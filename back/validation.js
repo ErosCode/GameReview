@@ -20,5 +20,15 @@ const loginValidation = (data) => {
     return schema.validate(data);
 };
 
+// Create Game validation
+const addGameValidation = (data) => {
+    const schema = Joi.object({
+    name: Joi.string().min(2).max(255).required(),
+    description: Joi.string().min(6).required()
+    });
+    return schema.validate(data);
+};
+
+module.exports.addGameValidation = addGameValidation;
 module.exports.registerValidation = registerValidation;
 module.exports.loginValidation = loginValidation;

@@ -6,7 +6,9 @@ const cors = require('cors');
 
 // Import Routes
 const authRoute = require('./routes/auth');
+const gameRoute = require('./routes/games');
 const postRoute = require('./routes/posts');
+
 
 
 dotenv.config();
@@ -24,6 +26,8 @@ app.use(express.json());
 
 // Route Middlewares
 app.use('/api/user', authRoute);
+app.use('/api', gameRoute);
 app.use('/api/posts', postRoute);
+
 
 app.listen(3002, () => console.log('Server Up and Running'));
