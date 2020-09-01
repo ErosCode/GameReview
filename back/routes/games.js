@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Game = require('../model/Game');
+const Game = require('../models/Game');
 const { addGameValidation } = require('../validation');
 
 module.exports = router.post('/games', async (req, res) => {

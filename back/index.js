@@ -8,6 +8,8 @@ const cors = require('cors');
 const authRoute = require('./routes/auth');
 const gameRoute = require('./routes/games');
 const postRoute = require('./routes/posts');
+const usersRoute = require('./routes/users');
+
 
 
 
@@ -28,6 +30,7 @@ app.use(express.json());
 app.use('/api/user', authRoute);
 app.use('/api', gameRoute);
 app.use('/api/posts', postRoute);
+app.use('/api/users', usersRoute);
 
 
 app.listen(3002, () => console.log('Server Up and Running'));
