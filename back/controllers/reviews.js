@@ -46,8 +46,12 @@ module.exports = {
         res.status(200).json({ success: true })
     },
 
-    deleteReview: async (req, res, next) => {
-        res.status(200).json({ success: true })
+    deleteReview: async (req, res) => {
+        const { reviewId } = req.params;
+        await Review.findByIdAndRemove(reviewId, function (err, Review) {
+            if (err) return res.status(500).send("There was a problem deleting the Review.");
+            res.status(200).send("Review: "+ reviewId +" was deleted.");
+          });
     },
 
 
