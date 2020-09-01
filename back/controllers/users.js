@@ -27,9 +27,6 @@ module.exports = {
         const { userId } = req.params;
         const newUser = req.body;
 
-        console.log('user id is', userId);
-        console.log('newuser id is', newUser);
-
         const result = await User.findByIdAndUpdate(userId, newUser, {new:true});
         res.status(200).json({ success: true })
     },
@@ -38,10 +35,7 @@ module.exports = {
         // req.body must contains any fields
         const { userId } = req.params;
         const newUser = req.body;
-
-        console.log('user id is', userId);
-        console.log('newuser id is', newUser);
-
+        
         const result = await User.findByIdAndUpdate(userId, newUser, {new:true});
         res.status(200).json({ success: true })
     },

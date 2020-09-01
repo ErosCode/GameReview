@@ -6,8 +6,14 @@ module.exports = {
         const reviews = await Review.find({});
         res.status(200).json(reviews)
     },
+
+    getReview: async (req, res, next) => {
+        const review = await Review.findById(req.params.reviewId);
+
+        res.status(200).json(review);
+    },
     
-    newReview:async (req, res, next) => {
+    newReview: async (req, res, next) => {
         const user = await User.findById(req.body.user);
         const newReview = req.body;
         delete newReview.user;
@@ -23,7 +29,26 @@ module.exports = {
         res.status(200).json(review);
     },
 
+    replaceReview: async (req, res, next) => {
+        const { reviewId } = req.params;
+        const newReview = req.body;
+
+        const result = await Review.findByIdAndUpdate(reviewId, newReview, {new:true});
+        res.status(200).json({ success: true })
+    },
+
+    updateReview: async (req, res, next) => {
+        // req.body must contains any fields
+        const { reviewId } = req.params;
+        const newReview = req.body;
+
+        const result = await Review.findByIdAndUpdate(userId, newReview, {new:true});
+        res.status(200).json({ success: true })
+    },
+
     deleteReview: async (req, res, next) => {
         res.status(200).json({ success: true })
     },
+
+
 }
