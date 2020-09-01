@@ -3,12 +3,14 @@ const router = require('express').Router();
 const UsersController = require ('../controllers/users');
 const User = require('../models/User');
 
+const { validateParam, schemas } = require('../validation');
+
 router.route('/')
     .get(UsersController.index);
 
 
 router.route('/:userId')
-    .get(UsersController.getUser)
+    .get(validateParam(schemas.idSchema, 'userId'), UsersController.getUser)
     .put(UsersController.replaceUser)
     .patch(UsersController.updateUser)
     .delete(UsersController.deleteUser);
