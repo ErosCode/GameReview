@@ -9,6 +9,7 @@ const authRoute = require('./routes/auth');
 const gameRoute = require('./routes/games');
 const postRoute = require('./routes/posts');
 const usersRoute = require('./routes/users');
+const reviewsRoute = require('./routes/reviews');
 
 
 
@@ -31,6 +32,7 @@ app.use('/api/', authRoute);
 app.use('/api', gameRoute);
 app.use('/api/posts', postRoute);
 app.use('/api/users', usersRoute);
+app.use('/api/reviews', reviewsRoute);
 
 
 app.listen(3002, () => console.log('Server Up and Running'));
