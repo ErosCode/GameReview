@@ -31,28 +31,11 @@ module.exports = {
         return schema.validate(data);
     },
 
-    // Create review validation
-    validateParam: (schema, name) => {
-        return (req, res, next) => {
-            const result =  schema.validate({ param: req['params'][name] });
-            if (result.error) {
-                // Error happen
-                return res.status(400).json(result.error);
-            } else {
-                if (!req.value)
-                    req.value = {};
-                if (!req.value['params'])
-                    req.value['params'] = {};
-                
-                req.value['params'][name] = result.value.param;
-                next();
-            }
-        }
-    },
-
-    schemas: {
-        idSchema: Joi.object().keys({
-            param: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required()
-        })
+    // Create parameters validation
+    validateParam: (data) => {
+        const schema = Joi.object({
+            userId: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required()
+        });
+        return schema.validate(data);
     },
 }

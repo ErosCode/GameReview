@@ -27,7 +27,7 @@ app.use(cors());
 app.use(express.json());
 
 // Route Middlewares
-app.use('/api/user', authRoute);
+app.use('/api/', authRoute);
 app.use('/api', gameRoute);
 app.use('/api/posts', postRoute);
 app.use('/api/users', usersRoute);

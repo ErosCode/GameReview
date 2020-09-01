@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const Review = require('../models/Review');
+const { validateParam } = require('../validation');
 
 module.exports = {
     index: async (req, res, next) => {
@@ -12,7 +13,11 @@ module.exports = {
     },
     
     getUser: async (req, res, next) => {
-        const { userId } = req.value.params;
+        const {error} = validateParam(req.params);
+        if(error) {
+            return res.status(400).send(error.details[0].message);
+        }
+        const { userId } = req.params;
         const user = await User.findById(userId);
         res.status(200).json(user);
     },

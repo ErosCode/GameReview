@@ -10,7 +10,7 @@ router.route('/')
 
 
 router.route('/:userId')
-    .get(validateParam(schemas.idSchema, 'userId'), UsersController.getUser)
+    .get(UsersController.getUser)
     .put(UsersController.replaceUser)
     .patch(UsersController.updateUser)
     .delete(UsersController.deleteUser);
