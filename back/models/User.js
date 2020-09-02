@@ -32,7 +32,7 @@ const userSchema = new Schema({
     }
 });
 
-/*userSchema.pre('remove', async function(next) {
+userSchema.pre('remove', async function(next) {
     try {
         await Review.remove({
             "_id": {
@@ -43,12 +43,6 @@ const userSchema = new Schema({
     } catch(err) {     
         next(err);
     }
-});*/
-userSchema.pre('remove', function(next) {
-    // 'this' is the client being removed. Provide callbacks here if you want
-    // to be notified of the calls' result.
-    Review.remove({_id: this.reviews}).exec();
-    next();
 });
 
 const User = mongoose.model('User', userSchema);

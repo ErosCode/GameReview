@@ -44,7 +44,7 @@ module.exports = {
         const { userId } = req.params;
         await User.findById(userId, async function (err, User) {
             try {
-                await User.deleteOne();
+                await User.remove();
                 res.status(200).send("User: "+ userId +" was deleted.");
                 next();
             } catch (err) {
