@@ -55,17 +55,15 @@ module.exports = {
     deleteReview: async (req, res, next) => {
         const { reviewId } = req.params;
         const userId = req.body.user;
-        console.log(userId);
         await Review.findById(reviewId, async function (err, Review) {
             try {
+                await Review.remove();
                 await User.update(
                     {'_id': userId}, 
-                    { $pull: { "reviews" : { id: reviewId } } },
+                    { $pull: { "reviews" :  reviewId } },
                     {new:true}
                 );
-                await Review.remove();
                 res.status(200).send("Review: "+ reviewId +" was deleted.");
-                
                 next();
             } catch (err) {
                 res.status(500).send("There was a problem deleting the review.");
