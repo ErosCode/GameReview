@@ -47,18 +47,5 @@ const reviewSchema = new Schema({
     createdAt: Date
   });
 
-  reviewSchema.pre('remove', async function(next) {
-    try {
-        await User.remove({
-            "_id": {
-                $in: this.user
-            }
-        });
-        next;
-    } catch(err) {     
-        next(err);
-    }
-});
-
  const Review = mongoose.model('Review', reviewSchema);
  module.exports = Review;
