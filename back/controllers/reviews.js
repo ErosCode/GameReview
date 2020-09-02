@@ -14,19 +14,25 @@ module.exports = {
     },
     
     newReview: async (req, res, next) => {
-        const user = await User.findById(req.body.user);
-        const newReview = req.body;
-        delete newReview.user;
+        try { 
+            //const { reviewId } = req.params;
+            const user = await User.findById(req.body.user);
+            const newReview = req.body;
+            delete newReview.user;
 
-        const review = new Review(newReview);
-        review.user = user;
+            const review = new Review(newReview);
+            review.user = user;
 
-        await review.save();
+            await review.save();
 
-        user.reviews.push(review);
-        await user.save();
+            user.reviews.push(review);
+            await user.save();
 
-        res.status(200).json(review);
+            res.status(200).json(review);
+            next();
+        } catch(err) {
+            next(err);
+        }
     },
 
     replaceReview: async (req, res, next) => {
@@ -48,9 +54,15 @@ module.exports = {
 
     deleteReview: async (req, res) => {
         const { reviewId } = req.params;
-        await Review.findByIdAndRemove(reviewId, function (err, Review) {
-            if (err) return res.status(500).send("There was a problem deleting the Review.");
-            res.status(200).send("Review: "+ reviewId +" was deleted.");
+        await Review.findById(reviewId, async function (err, Review) {
+            try {
+                await Review.deleteOne();
+                res.status(200).send("Review: "+ reviewId +" was deleted.");
+                next();
+            } catch (err) {
+                res.status(500).send("There was a problem deleting the Review.");
+                 next(err);
+            }
           });
     },
 

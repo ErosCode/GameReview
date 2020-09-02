@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const Review = require('./Review');
+
 const userSchema = new Schema({
     name: {
         type: String,
@@ -28,6 +30,25 @@ const userSchema = new Schema({
         type: Date,
         default: Date.now
     }
+});
+
+/*userSchema.pre('remove', async function(next) {
+    try {
+        await Review.remove({
+            "_id": {
+                $in: this.reviews
+            }
+        });
+        next;
+    } catch(err) {     
+        next(err);
+    }
+});*/
+userSchema.pre('remove', function(next) {
+    // 'this' is the client being removed. Provide callbacks here if you want
+    // to be notified of the calls' result.
+    Review.remove({_id: this.reviews}).exec();
+    next();
 });
 
 const User = mongoose.model('User', userSchema);

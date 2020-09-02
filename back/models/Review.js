@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const User = require('./User');
+
 const reviewSchema = new Schema({
     /*username: {
         type: String,
@@ -44,6 +46,19 @@ const reviewSchema = new Schema({
     },
     createdAt: Date
   });
+
+  reviewSchema.pre('remove', async function(next) {
+    try {
+        await User.remove({
+            "_id": {
+                $in: this.user
+            }
+        });
+        next;
+    } catch(err) {     
+        next(err);
+    }
+});
 
  const Review = mongoose.model('Review', reviewSchema);
  module.exports = Review;
