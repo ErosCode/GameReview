@@ -4,12 +4,6 @@ const Schema = mongoose.Schema;
 const User = require('./User');
 
 const reviewSchema = new Schema({
-    /*username: {
-        type: String,
-        require: true,
-        max: 255,
-        min: 6
-    },*/
     review_text: {
         type: String,
         require: true,
@@ -46,21 +40,6 @@ const reviewSchema = new Schema({
     },
     createdAt: Date
   });
-
-  /*reviewSchema.pre('remove', async function(next) {
-    try {
-        const { reviewId } = req.params;
-        const userId = req.body.user;
-        await User.update(
-            {'_id': userId}, 
-            { $pull: { "reviews" : { id: reviewId } } },
-            {new:true}
-        );
-        next;
-    } catch(err) {     
-        next(err);
-    }
-});*/
 
  const Review = mongoose.model('Review', reviewSchema);
  module.exports = Review;

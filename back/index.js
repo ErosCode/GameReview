@@ -29,7 +29,7 @@ app.use(express.json());
 
 // Route Middlewares
 app.use('/api/', authRoute);
-app.use('/api', gameRoute);
+app.use('/api/games', gameRoute);
 app.use('/api/posts', postRoute);
 app.use('/api/users', usersRoute);
 app.use('/api/reviews', reviewsRoute);

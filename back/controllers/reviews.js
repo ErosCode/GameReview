@@ -14,8 +14,7 @@ module.exports = {
     },
     
     newReview: async (req, res, next) => {
-        try { 
-            //const { reviewId } = req.params;
+        try {
             const user = await User.findById(req.body.user);
             const newReview = req.body;
             delete newReview.user;
