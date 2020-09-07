@@ -9,7 +9,7 @@ module.exports= {
     },
 
     getGame: async (req, res, next) => {
-        const game = await Game.findById(req.params.gameId);
+        const game = await Game.findById(req.params.gameId).populate('reviews');
         res.status(200).json(game);
     },
 

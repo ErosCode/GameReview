@@ -34,6 +34,10 @@ const reviewSchema = new Schema({
         max: 20,
         min: 0
     },
+    game: {
+        type: Schema.Types.ObjectId,
+        ref: "Game"
+    },
     user: {
       type: Schema.Types.ObjectId,
       ref: "User"
