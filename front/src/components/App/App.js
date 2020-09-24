@@ -1,11 +1,17 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
+
 import logo from './logo.svg';
 import Counter from '../../containers/Counter';
+import Header from '../Header';
+import Home from '../Home';
+import Games from '../Games';
+import Footer from '../Footer';
 import './App.scss';
 
 const App = () => (
   <div className="App">
-    <header className="App-header">
+    {/* <header className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
       <Counter />
       <p>
@@ -49,7 +55,21 @@ const App = () => (
           React Redux
         </a>
       </span>
-    </header>
+</header> */}
+    <Header />
+    <Route
+      path="/"
+      exact
+    >
+      <Home />
+    </Route>
+    <Route
+      path="/games"
+      exact
+    >
+      <Games />
+    </Route>
+    <Footer />
   </div>
 );
 
