@@ -11,7 +11,8 @@ import './App.scss';
 
 const App = () => (
   <div className="App">
-    {/* <header className="App-header">
+    <div className="page-container">
+      {/* <header className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
       <Counter />
       <p>
@@ -56,20 +57,22 @@ const App = () => (
         </a>
       </span>
 </header> */}
-    <Header />
-    <Route
-      path="/"
-      exact
-    >
-      <Home />
-    </Route>
-    <Route
-      path="/games"
-      exact
-    >
-      <Games />
-    </Route>
+      <Header />
+      <Route
+        path="/"
+        exact
+      >
+        <Home />
+      </Route>
+      <Route
+        path="/games"
+        exact
+      >
+        <Games />
+      </Route>
+    </div>
     <Footer />
+
   </div>
 );
 
