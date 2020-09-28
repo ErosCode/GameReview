@@ -1,0 +1,9 @@
+.games {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.game__card {
+    color: black;
+    margin: 10px 15px;
+}
