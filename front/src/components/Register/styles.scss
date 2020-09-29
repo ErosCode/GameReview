@@ -1,0 +1,25 @@
+.register__form {
+    display: flex;
+    flex-direction: column;
+}
+.field--input {
+    border-radius: 5px;
+}
+label {
+    margin-top: 20px;
+}
+.error__message {
+    color: red;
+}
+.error {
+    border: 2px solid #FF6565;
+}
+.validate {
+    border: 2px solid green;
+}
+.register__submit {
+    margin-top: 3em;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: orangered;
+}

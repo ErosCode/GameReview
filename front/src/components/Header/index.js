@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-
 import {
   Form,
   FormControl,
   Button,
   Navbar,
 } from 'react-bootstrap';
+import Register from '../Register';
+import Login from '../Login';
 
 import './styles.scss';
 
@@ -47,6 +48,8 @@ const Header = () => (
         >
           Profile
         </NavLink>
+        <Register />
+        <Login />
       </div>
     </nav>
   </div>
