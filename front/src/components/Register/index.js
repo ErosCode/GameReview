@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Formik, Form, Field } from 'formik';
-import styled from '@emotion/styled';
 import * as Yup from 'yup';
 import { Button, Modal } from 'react-bootstrap';
 import './styles.scss';
@@ -15,12 +14,12 @@ const Register = () => {
   const SignupSchema = Yup.object().shape({
     username: Yup.string()
       .min(6, 'Too Short! 6 characters minimum')
-      .max(50, 'Too Long! 50 characters minimum')
+      .max(50, 'Too Long! 50 characters maximum')
       .required('Required'),
     email: Yup.string().email('Invalid email').required('Required'),
     password: Yup.string()
       .min(6, 'Too Short! 6 characters minimum')
-      .max(50, 'Too Long! 50 characters minimum')
+      .max(50, 'Too Long! 50 characters maximum')
       .required('Required'),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref('password'), null], 'Passwords must match')
@@ -31,9 +30,9 @@ const Register = () => {
 
   return (
     <div className="register">
-      <Button variant="primary" onClick={handleShow}>
+      <button type="button" className="header__button" onClick={handleShow}>
         Sign Up
-      </Button>
+      </button>
 
       <Modal
         show={show}
