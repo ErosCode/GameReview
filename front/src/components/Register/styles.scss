@@ -23,3 +23,17 @@ label {
     border-radius: 5px;
     background-color: orangered;
 }
+.register__error__message {
+    padding-top: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5em;
+    color: red;
+}
+.register__success__message {
+    padding-top: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5em;
+    color: green;
+}

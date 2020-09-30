@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import axios from 'axios';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Button, Modal } from 'react-bootstrap';
@@ -10,6 +10,9 @@ const Register = () => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const [registerErrorMessage, setRegisterErrorMessage] = useState(false);
+  const [registerSuccessMessage, setRegisterSuccessMessage] = useState(false);
 
   const SignupSchema = Yup.object().shape({
     username: Yup.string()
@@ -22,11 +25,9 @@ const Register = () => {
       .max(50, 'Too Long! 50 characters maximum')
       .required('Required'),
     confirmPassword: Yup.string()
-      .oneOf([Yup.ref('password'), null], 'Passwords must match')
+      .oneOf([Yup.ref('password'), null], 'Passwords must match'),
 
   });
-
-
 
   return (
     <div className="register">
@@ -53,13 +54,42 @@ const Register = () => {
               confirmPassword: '',
             }}
             validationSchema={SignupSchema}
-            onSubmit={(values) => {
-            // same shape as initial values
-              console.log(values);
+            onSubmit={(values, { setSubmitting, resetForm }) => {
+              // same shape as initial values
+              setSubmitting(true);
+
+              axios.post('http://localhost:3002/api/register', {
+                name: values.username,
+                email: values.email,
+                password: values.password,
+              })
+                .then((response) => {
+                  setTimeout(() => {
+                    resetForm();
+                    setSubmitting(false);
+                  }, 500);
+                  setRegisterSuccessMessage('Your account has been created!');
+                  setRegisterErrorMessage(false);
+                  console.log(response);
+                })
+                .catch((error) => {
+                  setSubmitting(false);
+                  setRegisterErrorMessage(error.response.data);
+                  setRegisterSuccessMessage(false);
+                  console.log(error.response);
+                });
             }}
           >
-            {({ errors, touched }) => (
-              <Form className="register__form">
+            {({
+              errors, touched, isSubmitting, handleSubmit,
+            }) => (
+              <Form className="register__form" onSubmit={handleSubmit}>
+                <div className="register__error__message">
+                  {registerErrorMessage}
+                </div>
+                <div className="register__success__message">
+                  {registerSuccessMessage}
+                </div>
                 <label>
                   Username
                 </label>
@@ -86,12 +116,12 @@ const Register = () => {
                 {errors.confirmPassword && touched.confirmPassword ? (
                   <div className="error__message">{errors.confirmPassword}</div>
                 ) : null}
-                <button className="register__submit" type="submit">Submit</button>
+                <button className="register__submit" type="submit" disabled={isSubmitting}>Submit</button>
               </Form>
             )}
           </Formik>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className="register__modal__footer">
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>

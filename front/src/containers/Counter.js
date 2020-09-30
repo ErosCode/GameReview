@@ -1,4 +1,3 @@
-  
 // == Import : npm
 import { connect } from 'react-redux';
 
