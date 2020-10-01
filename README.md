@@ -1,3 +1,3 @@
 # GameReview
 
-Solo Project to train node js Express
+Little unfinished Project to learn the basics of the MERN stack(mongoDB,  nodeJs, Express, React)
