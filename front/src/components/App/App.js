@@ -11,10 +11,7 @@ import GameDetails from '../GameDetails';
 import Footer from '../Footer';
 import './App.scss';
 
-const App = ({getUser}) => {
-  useEffect(() => {
-    getUser();
-  }, []);
+const App = () => {
 
   return (
     <div className="App">
