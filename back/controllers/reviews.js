@@ -1,5 +1,6 @@
 const Review = require('../models/Review');
 const User = require('../models/User');
+const Game = require('../models/Game');
 
 module.exports = {
     index: async (req, res, next) => {
@@ -16,16 +17,21 @@ module.exports = {
     newReview: async (req, res, next) => {
         try {
             const user = await User.findById(req.body.user);
+            const game = await Game.findById(req.body.game);
             const newReview = req.body;
             delete newReview.user;
+            delete newReview.game;
 
             const review = new Review(newReview);
             review.user = user;
+            review.game = game;
 
             await review.save();
 
             user.reviews.push(review);
+            game.reviews.push(review);
             await user.save();
+            await game.save();
 
             res.status(200).json(review);
             next();

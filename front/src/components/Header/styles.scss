@@ -1,0 +1,18 @@
+.header {
+    margin-bottom: 2em;
+}
+.nav {
+    display: flex;
+    justify-content: space-between;
+    
+}
+.header__wrap--right {
+    display: flex;
+}
+.menu__item {
+    padding: 0 20px;
+    color: white;
+}
+.navbar__search {
+    border-radius: 5px;
+}
