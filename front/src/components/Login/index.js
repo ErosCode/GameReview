@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import Cookies from 'js-cookie';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Button, Modal } from 'react-bootstrap';
 
 import './styles.scss';
+import Axios from 'axios';
 
 const Login = () => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const [loginErrorMessage, setLoginErrorMessage] = useState(false);
+  const [loginSuccessMessage, setLoginSuccesMessage] = useState(false);
 
   const SigninSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Required'),
@@ -44,13 +48,43 @@ const Login = () => {
               password: '',
             }}
             validationSchema={SigninSchema}
-            onSubmit={(values) => {
+            onSubmit={(values, { setSubmitting, resetForm }) => {
             // same shape as initial values
-              console.log(values);
+              setSubmitting(true);
+              Axios.post('http://localhost:3002/api/login',
+              {
+                email: values.email,
+                password: values.password,
+              })
+                .then((response) => {
+                  setTimeout(() => {
+                    resetForm();
+                    setSubmitting(false);
+                  }, 500);
+                  setLoginSuccesMessage('Success !')
+                  setLoginErrorMessage(false);
+                  Cookies.set('auth-token', response.data)
+                  console.log(response.data);
+                })
+                .catch((error) => {
+                  setSubmitting(false);
+                  setLoginSuccesMessage(error.response.data);
+                  setLoginSuccesMessage(false);
+                  console.log(error.response);
+                })
+              
             }}
           >
-            {({ errors, touched }) => (
-              <Form className="register__form">
+            {({ 
+              errors, touched, isSubmitting, handleSubmit,
+            }) => (
+              <Form className="login__form" onSubmit={handleSubmit}>
+                <div className="login__error__message">
+                  {loginErrorMessage}
+                </div>
+                <div className="login__success__message">
+                  {loginSuccessMessage}
+                </div>
                 <label>
                   Email
                 </label>
@@ -63,7 +97,7 @@ const Login = () => {
                 {errors.password && touched.password ? (
                   <div className="error__message">{errors.password}</div>
                 ) : null}
-                <button className="register__submit" type="submit">Submit</button>
+                <button className="login__submit" type="submit" disabled={isSubmitting}>Submit</button>
               </Form>
             )}
           </Formik>
