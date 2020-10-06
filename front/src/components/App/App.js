@@ -26,11 +26,21 @@ const App = () => {
         localStorage.setItem('auth-token', '');
         token = '';
       }
-      const tokenRes = await Axios.post('http://localhost:3002/api/tokenIsValid', null,
+      const tokenRes = await Axios.post('http://localhost:3002/api/user/tokenIsValid', null,
       {
         headers: { 'x-auth-token': token }
       });
-      console.log(tokenRes.data);
+      if (tokenRes.data) {
+        const userRes = await Axios.get('http://localhost:3002/api/user/',
+        {
+          headers: { 'x-auth-token': token },
+        });
+        console.log(tokenRes.data);
+        setUserData({
+          token,
+          user: userRes.data,
+        });
+      }
     };
     checkLoggedIn();
   }, []);
