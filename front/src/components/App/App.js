@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 import UserContext from '../../UserContext.js';
-
-import logo from './logo.svg';
-import Counter from '../../containers/Counter';
+import Login from '../Login';
+import Register from '../Register';
 import Header from '../Header';
 import Home from '../Home';
 import Games from '../Games';
@@ -57,6 +55,18 @@ const App = () => {
           <Home />
         </Route>
         <Route
+          path="/register"
+          exact
+        >
+          <Register />
+        </Route>
+        <Route
+          path="/login"
+          exact
+        >
+          <Login />
+        </Route>
+        <Route
           path="/games"
           exact
         >
@@ -76,7 +86,4 @@ const App = () => {
   );
 };
 
-App.propTypes = {
-  getUser: PropTypes.func.isRequired,
-}
 export default App;

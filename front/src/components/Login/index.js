@@ -1,17 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
+import UserContext from "../../UserContext";
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import { Button, Modal } from 'react-bootstrap';
 
 import './styles.scss';
 import Axios from 'axios';
 
 const Login = () => {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
   const [loginErrorMessage, setLoginErrorMessage] = useState(false);
   const [loginSuccessMessage, setLoginSuccesMessage] = useState(false);
 
@@ -24,22 +20,13 @@ const Login = () => {
 
   });
 
+  const { setUserData } = useContext(UserContext);
+  const history = useHistory();
+
   return (
     <div className="login">
-      <button type="button" className="header__button" onClick={handleShow}>
-        Sign In
-      </button>
 
-      <Modal
-        show={show}
-        onHide={handleClose}
-        backdrop="static"
-        keyboard={false}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>Sign In</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+      Sign In
           <Formik
             validateOnChange
             initialValues={{
@@ -59,10 +46,16 @@ const Login = () => {
                   setTimeout(() => {
                     resetForm();
                     setSubmitting(false);
-                  }, 500);
-                  localStorage.setItem('auth-token', response.data.token);
-                  setLoginSuccesMessage('Success !')
-                  setLoginErrorMessage(false);
+                    setLoginSuccesMessage('Success !')
+                    setLoginErrorMessage(false);
+                  }, 2000);
+                  setUserData({
+                    token: response.data.token,
+                    user: response.data.user,
+                  });
+                  localStorage.setItem("auth-token", response.data.token);
+                  history.push("/");
+                  
                   console.log(response.data);
                 })
                 .catch((error) => {
@@ -100,13 +93,6 @@ const Login = () => {
               </Form>
             )}
           </Formik>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </div>
   );
 };
