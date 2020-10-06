@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Cookies from 'js-cookie';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Button, Modal } from 'react-bootstrap';
@@ -61,9 +60,9 @@ const Login = () => {
                     resetForm();
                     setSubmitting(false);
                   }, 500);
+                  localStorage.setItem('auth-token', response.data.token);
                   setLoginSuccesMessage('Success !')
                   setLoginErrorMessage(false);
-                  Cookies.set('auth-token', response.data)
                   console.log(response.data);
                 })
                 .catch((error) => {
