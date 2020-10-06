@@ -1,19 +1,50 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import { Route } from 'react-router-dom';
-
-import logo from './logo.svg';
-import Counter from '../../containers/Counter';
+import UserContext from '../../UserContext.js';
+import Login from '../Login';
+import Register from '../Register';
 import Header from '../Header';
 import Home from '../Home';
 import Games from '../Games';
 import GameDetails from '../GameDetails';
 import Footer from '../Footer';
 import './App.scss';
+import Axios from 'axios';
 
 const App = () => {
+  const [ userData, setUserData ] = useState({
+    token: undefined,
+    user: undefined,
+  });
+
+  useEffect(() => {
+    const checkLoggedIn = async () => {
+      let token = localStorage.getItem('auth-token');
+      if (token === null) {
+        localStorage.setItem('auth-token', '');
+        token = '';
+      }
+      const tokenRes = await Axios.post('http://localhost:3002/api/user/tokenIsValid', null,
+      {
+        headers: { 'x-auth-token': token }
+      });
+      if (tokenRes.data) {
+        const userRes = await Axios.get('http://localhost:3002/api/user/',
+        {
+          headers: { 'x-auth-token': token },
+        });
+        console.log(tokenRes.data);
+        setUserData({
+          token,
+          user: userRes.data,
+        });
+      }
+    };
+    checkLoggedIn();
+  }, []);
 
   return (
+    <UserContext.Provider value={{ userData, setUserData }} >
     <div className="App">
       <div className="page-container">
         <Header />
@@ -22,6 +53,18 @@ const App = () => {
           exact
         >
           <Home />
+        </Route>
+        <Route
+          path="/register"
+          exact
+        >
+          <Register />
+        </Route>
+        <Route
+          path="/login"
+          exact
+        >
+          <Login />
         </Route>
         <Route
           path="/games"
@@ -39,10 +82,8 @@ const App = () => {
       <Footer />
 
     </div>
+    </UserContext.Provider>
   );
 };
 
-App.propTypes = {
-  getUser: PropTypes.func.isRequired,
-}
 export default App;

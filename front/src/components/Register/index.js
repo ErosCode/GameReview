@@ -2,14 +2,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import { Button, Modal } from 'react-bootstrap';
 import './styles.scss';
 
 const Register = () => {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   const [registerErrorMessage, setRegisterErrorMessage] = useState(false);
   const [registerSuccessMessage, setRegisterSuccessMessage] = useState(false);
@@ -30,21 +25,7 @@ const Register = () => {
   });
 
   return (
-    <div className="register">
-      <button type="button" className="header__button" onClick={handleShow}>
-        Sign Up
-      </button>
-
-      <Modal
-        show={show}
-        onHide={handleClose}
-        backdrop="static"
-        keyboard={false}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>Sign Up</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+    <div className="register">Sign Up
           <Formik
             validateOnChange
             initialValues={{
@@ -120,13 +101,6 @@ const Register = () => {
               </Form>
             )}
           </Formik>
-        </Modal.Body>
-        <Modal.Footer className="register__modal__footer">
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </div>
   );
 };

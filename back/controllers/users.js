@@ -17,8 +17,7 @@ module.exports = {
         if(error) {
             return res.status(400).send(error.details[0].message);
         }
-        const { userId } = req.params;
-        const user = await User.findById(userId);
+        const user = await User.findById(req.user);
         res.status(200).json(user);
     },
 

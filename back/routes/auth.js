@@ -3,6 +3,7 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const { registerValidation, loginValidation }= require('../validation');
+const auth = require('../middlewares/auth');
 
 
 router.post('/register', async (req, res) => {
@@ -60,9 +61,49 @@ router.post('/login', async (req,res) => {
     };
 
     // Create and assign a token
-    const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
-    res.header('auth-token', token).send(token);
+    const token = jwt.sign({ id: user._id}, process.env.TOKEN_SECRET);
+    res.json({token, user: {
+        id: user._id,
+        email: user.email,
+        username: user.name,
+    }});
 });
+
+router.delete("/user/delete", auth, async (req, res) => {
+    try {
+      const deletedUser = await User.findByIdAndDelete(req.user);
+      res.json(deletedUser);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+router.post('/user/tokenIsValid', async (req, res) => {
+    try {
+        const token = req.header('x-auth-token');
+        if (!token) return res.json(false);
+
+        const verified = jwt.verify(token, process.env.TOKEN_SECRET);
+        if(!verified) return res.json(false);
+
+        const user = await User.findById(verified.id);
+        if (!user) return res.json(false);
+
+        return res.json(true);
+
+    } catch (err) {
+        res.status(500).json({ error: err.message })
+    }
+});
+
+router.get('/user/', auth, async (req, res) => {
+    const user = await User.findById(req.user);
+    res.json({
+        id: user._id,
+        username: user.name,
+        email: user.email,
+    });
+})
 
 
 module.exports = router;
