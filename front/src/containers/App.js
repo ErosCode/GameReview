@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { getGames } from '../actions/games';
 
 import App from '../components/App/App';
 
