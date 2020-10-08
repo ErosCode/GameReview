@@ -1,12 +1,14 @@
 import { connect } from 'react-redux';
 import { getGames } from '../actions/games';
 
-import App from '../components/App/App';
+import Games from '../components/Games';
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+    games: state.games.games,
+});
 
 const mapDispatchToProps = (dispatch) => ({
     getGames: () => dispatch(getGames()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(Games);
