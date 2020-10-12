@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 import UserContext from '../../UserContext.js';
 import Login from '../Login';
@@ -6,12 +7,12 @@ import Register from '../Register';
 import Header from '../Header';
 import Home from '../Home';
 import Games from '../../containers/Games';
-import GameDetails from '../GameDetails';
+import GameDetails from '../../containers/GameDetails';
 import Footer from '../Footer';
 import './App.scss';
 import Axios from 'axios';
 
-const App = () => {
+const App = ({ getGames }) => {
   const [ userData, setUserData ] = useState({
     token: undefined,
     user: undefined,
@@ -43,6 +44,10 @@ const App = () => {
     checkLoggedIn();
   }, []);
 
+  useEffect(() => {
+    getGames();
+  }, [])
+
   return (
     <UserContext.Provider value={{ userData, setUserData }} >
     <div className="App">
@@ -73,17 +78,23 @@ const App = () => {
           <Games />
         </Route>
         <Route
-          path="/games/game_details"
+          path="/games/:slug"
           exact
-        >
-          <GameDetails />
-        </Route>
+          component={({ match }) => (
+            <GameDetails slug={ match.params.slug } />
+          )} 
+        />
+        
       </div>
       <Footer />
 
     </div>
     </UserContext.Provider>
   );
+};
+
+App.propTypes = {
+  getGames: PropTypes.func.isRequired,
 };
 
 export default App;
