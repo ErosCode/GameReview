@@ -19,6 +19,7 @@ const App = ({ getGames }) => {
   });
 
   useEffect(() => {
+    getGames();
     const checkLoggedIn = async () => {
       let token = localStorage.getItem('auth-token');
       if (token === null) {
@@ -43,10 +44,6 @@ const App = ({ getGames }) => {
     };
     checkLoggedIn();
   }, []);
-
-  useEffect(() => {
-    getGames();
-  }, [])
 
   return (
     <UserContext.Provider value={{ userData, setUserData }} >

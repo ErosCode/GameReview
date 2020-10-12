@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Reviews from '../Reviews';
 import { Card } from 'react-bootstrap';
