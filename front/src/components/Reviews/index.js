@@ -1,16 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import ReviewForm from './ReviewForm';
 import './styles.scss';
 
 const Reviews = () => (
   <div className="reviews">
-    <div className="review__post">
-      Reviews Post
-    </div>
-    <div className="review__form">
-      Review Form
-    </div>
+    Reviews
+    <ReviewForm />
   </div>
 );
 

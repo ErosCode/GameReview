@@ -1,0 +1,16 @@
+.reviewForm {
+    background-color: lightgrey;
+}
+.reviewForm > form > * {
+    margin: 0 auto;
+    width: 80%;
+    border-radius: 7px;
+}
+.reviewForm > form {
+    display: flex;
+    flex-direction: column;
+}
+.reviewForm__text {
+    padding-top: 0;
+    padding-left: 0;
+}
