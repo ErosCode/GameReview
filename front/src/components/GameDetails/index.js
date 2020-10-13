@@ -2,12 +2,11 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Reviews from '../Reviews';
 import { Card } from 'react-bootstrap';
-
 import './styles.scss';
 import gameImg from '../../styles/bge.jpg';
 
 const GameDetails = ({ game }) =>  {
-  console.log('game123153: ', game);
+console.log('game123153: ', game);
   return (
     <div className="game__details">
       <div className="game__infos">
@@ -38,10 +37,14 @@ const GameDetails = ({ game }) =>  {
 
 GameDetails.propTypes = {
   game: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    note: PropTypes.number.isRequired,
+    name: PropTypes.string,
+    description: PropTypes.string,
+    note: PropTypes.number,
   }),
+};
+
+GameDetails.defaultProps = {
+  game: {},
 };
 
 export default GameDetails;

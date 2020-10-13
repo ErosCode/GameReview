@@ -6,10 +6,10 @@ const mapStateToProps = (state, ownProps) => {
     const game = getGameBySlug(state.games.games, ownProps.slug);
     return {
       game,
+      games: state.games.games,
     };
   };
 
-const mapDispatchToProps = () => ({
-});
+const mapDispatchToProps = () => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameDetails);

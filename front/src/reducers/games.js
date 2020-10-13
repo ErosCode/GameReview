@@ -1,5 +1,5 @@
 import {
-    SAVE_GAMES,
+    SAVE_GAMES
   } from '../actions/games';
   
   const initialState = {

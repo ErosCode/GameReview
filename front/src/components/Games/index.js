@@ -15,7 +15,6 @@ const Games = ({ games }) => {
       <Card key={_id} className="game__card" style={{ width: '18rem' }}>
         <Link
           to={`/games/${getSlugFromTitle(name)}`}
-          
         >
           <Card.Img variant="top" src={gameImg} />
         </Link>
