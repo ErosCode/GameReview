@@ -8,9 +8,6 @@ import './styles.scss';
 const Reviews = () => (
   <div className="reviews">
     <ReviewsPost />
-    <ReviewsPost />
-    <ReviewsPost />
-    <ReviewsPost />
     <ReviewForm />
   </div>
 );
