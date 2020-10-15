@@ -1,9 +1,12 @@
 .footer {
+    display: flex;
+    justify-content: space-around;
     position: relative;
-    background-color: #f0f;
+    background-color: black;
     bottom: 0;
     height: 100px;
     width: 100%;
     box-sizing: content-box;
     margin-top: 2em;
+    color: white;
 }
