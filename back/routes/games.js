@@ -12,5 +12,5 @@ router.route('/:gameId')
     .post(ReviewController.newReview)
     .put(GameController.replaceGame)
     .delete(GameController.deleteGame);
-    
+
 module.exports = router;

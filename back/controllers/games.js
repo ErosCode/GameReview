@@ -1,5 +1,6 @@
 const Game = require('../models/Game');
 const User = require('../models/User');
+const Review = require('../models/Review');
 const { addGameValidation } = require('../validation');
 
 
@@ -10,8 +11,19 @@ module.exports= {
     },
 
     getGame: async (req, res, next) => {
-        const game = await Game.findById(req.params.gameId).populate('reviews');
+        try {
+            const game = await Game.findById(req.params.gameId).populate({
+            path : 'reviews',
+            populate : {
+              path : 'user'
+            }});
         res.status(200).json(game);
+        next();
+        }
+        catch(err) {
+            res.status(404).json('failed to fetch game data');
+            next(err);
+        }
     },
 
     newGame: async (req, res, next) => {
