@@ -7,11 +7,10 @@ const games = (store) => (next) => (action) => {
         const gameId = action.gameId;
       Axios.get(`http://localhost:3002/api/games/${gameId}`)
         .then((response) => {
-          console.log(response.data);
           store.dispatch(saveReviews(response.data.reviews));
         })
         .catch((error) => {
-          console.log(error);
+          console.log(error.response);
         });
 
       next(action);

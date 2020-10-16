@@ -3,8 +3,9 @@ import { getReviews } from '../actions/reviews';
 
 import Reviews from '../components/Reviews';
 
-const mapStateToProps = (state) => {
-};
+const mapStateToProps = (state) => ({
+    reviews: state.games.reviews,
+});
 
 const mapDispatchToProps = (dispatch) => ({
     getReviews: (gameId) => dispatch(getReviews(gameId)),
