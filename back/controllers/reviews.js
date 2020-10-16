@@ -9,8 +9,7 @@ module.exports = {
     },
 
     getReview: async (req, res, next) => {
-        const review = await Review.findById(req.params.reviewId);
-
+        const review = await Review.findById(req.params.reviewId).populate('user');
         res.status(200).json(review);
     },
     

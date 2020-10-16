@@ -1,4 +1,5 @@
 const Game = require('../models/Game');
+const User = require('../models/User');
 const { addGameValidation } = require('../validation');
 
 

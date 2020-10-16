@@ -1,23 +1,39 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import './styles.scss';
 import { Avatar } from '@material-ui/core';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+import Axios from 'axios';
 
 const ReviewsPost = ({ getReviews, gameId, reviews}) => {
   useEffect(() => {
     getReviews(gameId);
   }, []);
+ const { userName, setUserName } = useState('');
+
+  const userNameByPost = (reviewId) => {
+      Axios.get(`http://localhost:3002/api/reviews/${reviewId}`)
+      .then((response) => {
+        console.log('username', response.data.user.name);
+        setUserName(response.data.user.name);
+      })
+      .catch((error) => {
+        console.log(error.response);
+      })
+  };
+
   return (
     <div className="reviews__post">
       {reviews.map(( review ) => (
-      <div className="post">
+      <div key={review._id} className="post">
       <div className="post__top">
           <div className="post__top__left">
               <div className="post__top__left__info">
                   <Avatar src="" className="post__avatar" />
-                  <h3>{review.user.name}</h3>
+                  <h3 onLoad={userNameByPost(review._id)} >
+                    {userName}
+                  </h3>
               </div>
               <p>{review.date}</p>
           </div>
@@ -63,7 +79,7 @@ const ReviewsPost = ({ getReviews, gameId, reviews}) => {
 
 ReviewsPost.propTypes = {
   getReviews: PropTypes.func,
-  reviews: PropTypes.object,
+  reviews: PropTypes.array,
 };
 
 export default ReviewsPost;
