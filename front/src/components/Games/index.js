@@ -6,21 +6,26 @@ import { Card, Button } from 'react-bootstrap';
 import { getSlugFromTitle } from '../../selectors';
 
 import './styles.scss';
-import gameImg from '../../styles/bge.jpg';
 
 const Games = ({ games }) => {
   return (
     <div className="games">
-      {games.map(({ name, _id }) => (
+      {games.map(({ name, _id, imgURL }) => (
       <Card key={_id} className="game__card" style={{ width: '18rem' }}>
         <Link
           to={`/games/${getSlugFromTitle(name)}`}
         >
-          <Card.Img variant="top" src={gameImg} />
+          <Card.Img variant="top" src={imgURL} className="game__card__img"/>
         </Link>
         <Card.Body>
           <Card.Title>{name}</Card.Title>
-          <Button variant="primary">Show Reviews</Button>
+          <Link
+            to={`/games/${getSlugFromTitle(name)}`}
+          >
+          <Button variant="primary">
+            Show Reviews
+          </Button>
+          </Link>
         </Card.Body>
       </Card>
       ))}
@@ -33,6 +38,7 @@ Games.propTypes = {
     PropTypes.shape({
       name: PropTypes.string,
       _id: PropTypes.string,
+      imgURL: PropTypes.string,
     }),
   ).isRequired,
 };

@@ -5,11 +5,12 @@ import ReviewsPost from './ReviewsPost';
 
 import './styles.scss';
 
-const Reviews = () => (
-  <div className="reviews">
-    <ReviewsPost />
-    <ReviewForm />
-  </div>
-);
-
+const Reviews = ({ gameId, getReviews }) => {
+  return (
+    <div className="reviews">
+      <ReviewsPost getReviews={getReviews} gameId={gameId}/>
+      <ReviewForm gameId={gameId}/>
+    </div>
+  );
+};
 export default Reviews;

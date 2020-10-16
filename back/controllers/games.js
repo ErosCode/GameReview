@@ -4,7 +4,7 @@ const { addGameValidation } = require('../validation');
 
 module.exports= {
     index: async (req, res, next) => {
-        const games = await Game.find({});
+        const games = await Game.find({}).populate('reviews');
         res.status(200).json(games);
     },
 

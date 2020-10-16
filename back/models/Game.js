@@ -8,6 +8,9 @@ const gameSchema = new Schema({
         max: 255,
         min: 2
     },
+    imgURL: {
+        type: String,
+    },
     description: {
         type: String,
         required: true,
@@ -24,7 +27,10 @@ const gameSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Review"
     }],
-    createdAt: Date
+    date: {
+        type: Date,
+        default: Date.now
+    }
 });
 
 const Game = mongoose.model('Game', gameSchema);

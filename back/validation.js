@@ -27,7 +27,8 @@ module.exports = {
         const schema = Joi.object({
         name: Joi.string().min(2).max(255).required(),
         description: Joi.string().min(6).required(),
-        note: Joi.number().min(0).max(20).required()
+        note: Joi.number().min(0).max(20).required(),
+        imgURL: Joi.string().required(),
         });
         return schema.validate(data);
     },

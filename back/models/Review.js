@@ -13,25 +13,31 @@ const reviewSchema = new Schema({
     review_graphics: {
             type: Number,
             require: true,
-            max: 20,
+            max: 10,
             min: 0
     },
     review_story: {
             type: Number,
             require: true,
-            max: 20,
+            max: 10,
             min: 0
     },
     review_animation: {
             type: Number,
             require: true,
-            max: 20,
+            max: 10,
             min: 0
     },
     review_writing: {
         type: Number,
         require: true,
-        max: 20,
+        max: 10,
+        min: 0
+    },
+    review_likes: {
+        type: Number,
+        require: true,
+        max: 999,
         min: 0
     },
     game: {
@@ -42,7 +48,10 @@ const reviewSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: "User"
     },
-    createdAt: Date
+    date: {
+        type: Date,
+        default: Date.now
+    }
   });
 
  const Review = mongoose.model('Review', reviewSchema);

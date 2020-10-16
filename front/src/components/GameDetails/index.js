@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Reviews from '../Reviews';
+import Reviews from '../../containers/Reviews';
 import { Card } from 'react-bootstrap';
 import './styles.scss';
-import gameImg from '../../styles/bge.jpg';
 
 const GameDetails = ({ game }) =>  {
 console.log('game123153: ', game);
@@ -12,7 +11,7 @@ console.log('game123153: ', game);
       <div className="game__infos">
         <div className="game__infos--img">
           <Card style={{ width: '18rem' }}>
-            <Card.Img src={gameImg} />
+            <Card.Img src={game.imgURL} style={{ width: '17.9rem', height: '20rem' }} />
           </Card>
         </div>
         <div className="game__infos--details">
@@ -30,16 +29,18 @@ console.log('game123153: ', game);
           </p>
         </div>
       </div>
-      <Reviews />
+      <Reviews gameId={game._id}/>
     </div>
   );
 };
 
 GameDetails.propTypes = {
   game: PropTypes.shape({
+    _id: PropTypes.string,
     name: PropTypes.string,
     description: PropTypes.string,
     note: PropTypes.number,
+    imgURL: PropTypes.string,
   }),
 };
 

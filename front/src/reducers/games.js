@@ -1,9 +1,13 @@
 import {
     SAVE_GAMES
   } from '../actions/games';
-  
+import {
+  SAVE_REVIEWS
+} from '../actions/reviews';
+
   const initialState = {
     games: [],
+    reviews: [],
   };
   
   const games = (state = initialState, action = {}) => {
@@ -13,6 +17,11 @@ import {
           ...state,
           games: action.games,
         };
+      case SAVE_REVIEWS:
+        return {
+        ...state,
+        reviews: action.reviews,
+        }
       default:
         return state;
     }
