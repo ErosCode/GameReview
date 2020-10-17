@@ -6,8 +6,15 @@ const { addGameValidation } = require('../validation');
 
 module.exports= {
     index: async (req, res, next) => {
-        const games = await Game.find({}).populate('reviews');
+        try {
+            const games = await Game.find({}).populate('reviews');
         res.status(200).json(games);
+        }
+        catch(err) {
+            res.status(400).json(err);
+            next();
+        }
+        
     },
 
     getGame: async (req, res, next) => {
@@ -21,8 +28,8 @@ module.exports= {
         next();
         }
         catch(err) {
-            res.status(404).json('failed to fetch game data');
-            next(err);
+            res.status(404).json('failed to fetch game');
+            next();
         }
     },
 
@@ -48,7 +55,7 @@ module.exports= {
             res.status(200).json(game);
             next();
         } catch(err) {
-            next(err);
+            next();
         }
     },
     

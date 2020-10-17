@@ -7,8 +7,6 @@ import {
   Button,
   Navbar,
 } from 'react-bootstrap';
-import Register from '../Register';
-import Login from '../Login';
 
 import './styles.scss';
 

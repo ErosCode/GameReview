@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import { GET_REVIEWS, saveReviews } from '../actions/reviews';
+import { GET_REVIEWS, saveReviews} from '../actions/reviews';
 
 const games = (store) => (next) => (action) => {
   switch (action.type) {

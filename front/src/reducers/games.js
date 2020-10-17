@@ -1,5 +1,5 @@
 import {
-    SAVE_GAMES
+    SAVE_GAMES,
   } from '../actions/games';
 import {
   SAVE_REVIEWS
@@ -8,6 +8,7 @@ import {
   const initialState = {
     games: [],
     reviews: [],
+    gameId: '',
   };
   
   const games = (state = initialState, action = {}) => {
@@ -21,7 +22,8 @@ import {
         return {
         ...state,
         reviews: action.reviews,
-        }
+        gameId: action.gameId,
+        };
       default:
         return state;
     }

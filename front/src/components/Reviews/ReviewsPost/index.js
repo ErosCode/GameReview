@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import './styles.scss';
 import { Avatar } from '@material-ui/core';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
-import Axios from 'axios';
 
 const ReviewsPost = ({ getReviews, gameId, reviews}) => {
   useEffect(() => {
@@ -19,6 +18,11 @@ const truncateString = (str, num) => {
 
   return (
     <div className="reviews__post">
+      {reviews.length === 0 && (
+        <div>
+          THERE IS NO REVIEWS FOR THIS GAME YET
+        </div>
+      )}
       {reviews.map(( review ) => (
       <div key={review._id} className="post">
       <div className="post__top">
