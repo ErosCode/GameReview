@@ -10,6 +10,15 @@ const ReviewsPost = ({ getReviews, gameId, reviews}) => {
   useEffect(() => {
     getReviews(gameId);
   }, []);
+const truncateString = (str, num) => {
+  // If the length of str is less than or equal to num
+  // just return str--don't truncate it.
+  if (str.length <= num) {
+    return str
+  }
+  // Return str truncated with '...' concatenated to the end of str.
+  return str.slice(0, 10)
+};
 
   return (
     <div className="reviews__post">
@@ -21,9 +30,12 @@ const ReviewsPost = ({ getReviews, gameId, reviews}) => {
                   <Avatar src="" className="post__avatar" />
                   <h3>{review.user.name}</h3>
               </div>
-              <p>{review.date}</p>
+              <p>{truncateString(review.date)}</p>
           </div>
         <div className="post__top__right">
+          <div className="post__option">
+          <p>Rating : {(review.review_graphics + review.review_writing + review.review_story + review.review_animation) / 4}</p>
+          </div>
           <div className="post__option">
             <ThumbUpIcon />
             <p>Like : 5555</p>
