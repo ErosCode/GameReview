@@ -21,7 +21,20 @@
     padding-left: 20px;
     padding-right: 20px;
 }
-
+.header__logout--button {
+    background: linear-gradient(to top, #da6555, #da55bb);
+    border: none;
+    border-radius: 7px;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    margin-right: 0.5em;
+    margin-left: 0.5em;
+}
+.header__logout--button:hover {
+    color: black;
+    background: linear-gradient(to top, #dab055, #da55bb);
+}
 .header__link {
     border-radius: 7px;
     background: linear-gradient(to top, #da6555, #da55bb);
