@@ -66,9 +66,9 @@ const truncateString = (str, num) => {
               {review.review_animation}/10
           </div>
         </div>
-        <p className="post__text">
+        <div className="post__text">
         {review.review_text}
-        </p>
+        </div>
       </div>
     </div>
   ))}

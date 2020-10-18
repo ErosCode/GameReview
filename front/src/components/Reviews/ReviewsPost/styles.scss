@@ -39,8 +39,7 @@
 .post__text {
     text-align: justify;
     padding-right: 10px;
-    height: 400px;
-    overflow: hidden scroll;
+    word-wrap: break-word;
 }
 .post__top__right {
     padding: 10px;
