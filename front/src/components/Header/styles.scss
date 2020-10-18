@@ -88,6 +88,18 @@
       display: none;
     }
 }
+@media (max-width: 447px) {
+    .nav--smallScreen__right,
+    .header__search__form,
+    .header__link
+     {
+      margin: 0;
+    }
+    .header__link {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
 #menuToggle {
   position: absolute;
   top: 15px;

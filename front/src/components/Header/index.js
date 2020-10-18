@@ -97,7 +97,11 @@ const Header = () => {
           >
             Games
           </NavLink>
+            <li style={{ color: 'white', paddingTop: '200px'}}>
+              &copy; All rights reserved ErosCode
+              </li>
           </ul>
+          
         </div>
         <div className="nav--smallScreen__right">
         <form className="header__search__form">
