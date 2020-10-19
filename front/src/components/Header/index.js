@@ -1,17 +1,28 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import PropTypes from 'prop-types';
 import UserContext from '../../UserContext';
 import { NavLink } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
 import './styles.scss';
 
-const Header = () => {
+const Header = ({ onSubmitSearch, games }) => {
   const { userData, setUserData } = useContext(UserContext);
+  const [ searchValue, setSearchValue ] = useState('');
   const logout = () => {
     setUserData({
       token: undefined,
       user: undefined,
     });
     localStorage.setItem("auth-token", "");
+  };
+  const history = useHistory();
+  const handleSearchSubmit = (evt) => {
+    evt.preventDefault();
+    history.push(`/searchGames=${searchValue}`);
+  };
+  const handleSearchChange = (evt) => {
+    setSearchValue(evt.target.value);
   };
 
   return (
@@ -36,8 +47,8 @@ const Header = () => {
           </NavLink>
         </div>
         <div className="header__wrap--right">
-            <form className="header__search__form">
-              <input type="search" placeholder="Search" />
+            <form onSubmit={handleSearchSubmit} className="header__search__form">
+              <input value={searchValue} onChange={handleSearchChange} name="search" type="search" placeholder="Search" />
             </form>
           {userData.user ? (
             <>
@@ -104,8 +115,8 @@ const Header = () => {
           
         </div>
         <div className="nav--smallScreen__right">
-        <form className="header__search__form">
-              <input type="search" placeholder="Search" />
+        <form onSubmit={handleSearchSubmit} className="header__search__form">
+              <input name="search" type="search" placeholder="Search" />
             </form>
           {userData.user ? (
             <>
@@ -144,6 +155,10 @@ const Header = () => {
     </div>
     
   );
+};
+
+Header.propTypes = {
+  onSubmitSearch: PropTypes.func.isRequired,
 };
 
 export default Header;
