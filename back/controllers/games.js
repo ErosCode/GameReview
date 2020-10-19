@@ -81,4 +81,20 @@ module.exports= {
         });
     },
 
+    searchGames: async (req, res, next) => {
+        query = req.params.query
+            try{
+                
+                const gamesSearch = await Game.find({
+                   name: {
+                    $regex: new RegExp(query, "i")
+                    }
+                })
+                res.status(200).json(gamesSearch);
+            } catch (err) {
+                console.log(err.response);
+            };
+    },
+
+
 }

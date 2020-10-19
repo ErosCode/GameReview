@@ -7,6 +7,9 @@ router.route('/')
     .get(GameController.index)
     .post(GameController.newGame)
 
+router.route('/search/:query')
+    .get(GameController.searchGames)
+
 router.route('/:gameId')
     .get(GameController.getGame)
     .post(ReviewController.newReview)
