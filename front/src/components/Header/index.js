@@ -1,9 +1,7 @@
 import React, { useContext, useState } from 'react';
-import PropTypes from 'prop-types';
 import UserContext from '../../UserContext';
 import { NavLink, Link } from 'react-router-dom';
 import { getSlugFromTitle } from '../../selectors';
-import Axios from 'axios';
 
 import './styles.scss';
 

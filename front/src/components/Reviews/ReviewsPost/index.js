@@ -7,6 +7,8 @@ import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 
 const ReviewsPost = ({ getReviews, gameId, reviews}) => {
   useEffect(() => {
+    
+  console.log('gameIdReview', gameId);
     getReviews(gameId);
   }, []);
 const truncateString = (str, num) => {
