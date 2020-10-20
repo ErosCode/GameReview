@@ -93,6 +93,7 @@ module.exports= {
                 res.status(200).json(gamesSearch);
             } catch (err) {
                 console.log(err.response);
+                res.status(400).json('Error on fetching serch data');
             };
     },
 

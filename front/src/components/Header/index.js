@@ -1,14 +1,17 @@
 import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import UserContext from '../../UserContext';
-import { NavLink } from 'react-router-dom';
-import { useHistory } from "react-router-dom";
+import { NavLink, Link } from 'react-router-dom';
+import { getSlugFromTitle } from '../../selectors';
+import Axios from 'axios';
 
 import './styles.scss';
 
-const Header = ({ onSubmitSearch, games }) => {
+const Header = ({gameId}) => {
   const { userData, setUserData } = useContext(UserContext);
   const [ searchValue, setSearchValue ] = useState('');
+  const [ searchFilter, setSearchFilter ] = useState([]);
+
   const logout = () => {
     setUserData({
       token: undefined,
@@ -16,14 +19,27 @@ const Header = ({ onSubmitSearch, games }) => {
     });
     localStorage.setItem("auth-token", "");
   };
-  const history = useHistory();
-  const handleSearchSubmit = (evt) => {
-    evt.preventDefault();
-    history.push(`/searchGames=${searchValue}`);
-  };
+  
   const handleSearchChange = (evt) => {
     setSearchValue(evt.target.value);
+    setTimeout(() => {
+
+    })
+    Axios.get(`http://localhost:3002/api/games/search/` + searchValue)
+    .then((response) => {
+      console.log(response.data)
+      setSearchFilter(response.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   };
+
+  const results = !searchValue
+    ? searchFilter
+    : searchFilter.filter(({name}) =>
+    getSlugFromTitle(name).includes(getSlugFromTitle(searchValue))
+      );
 
   return (
     <div className="header">
@@ -47,9 +63,17 @@ const Header = ({ onSubmitSearch, games }) => {
           </NavLink>
         </div>
         <div className="header__wrap--right">
-            <form onSubmit={handleSearchSubmit} className="header__search__form">
+            <div className="header__search__form">
               <input value={searchValue} onChange={handleSearchChange} name="search" type="search" placeholder="Search" />
-            </form>
+                  {results.map((item) => (
+                      <Link
+                        to={`/games/${getSlugFromTitle(item.name)}`}
+                        key={item.name}
+                      >
+                      {item.name}
+                      </Link>
+                  ))}
+            </div>
           {userData.user ? (
             <>
             <NavLink
@@ -115,9 +139,17 @@ const Header = ({ onSubmitSearch, games }) => {
           
         </div>
         <div className="nav--smallScreen__right">
-        <form onSubmit={handleSearchSubmit} className="header__search__form">
-              <input name="search" type="search" placeholder="Search" />
-            </form>
+        <div className="header__search__form">
+              <input value={searchValue} onChange={handleSearchChange} name="search" type="search" placeholder="Search" />
+                  {results.map((item) => (
+                      <Link
+                        to={`/games/${getSlugFromTitle(item.name)}`}
+                        key={item.name}
+                      >
+                      {item.name}
+                      </Link>
+                  ))}
+            </div>
           {userData.user ? (
             <>
             <NavLink
@@ -155,10 +187,6 @@ const Header = ({ onSubmitSearch, games }) => {
     </div>
     
   );
-};
-
-Header.propTypes = {
-  onSubmitSearch: PropTypes.func.isRequired,
 };
 
 export default Header;
