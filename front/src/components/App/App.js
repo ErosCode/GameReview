@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 import UserContext from '../../UserContext.js';
 import Login from '../Login';
 import Register from '../Register';
-import Header from '../Header';
+import Header from '../../containers/Header';
 import Home from '../Home';
 import Games from '../../containers/Games';
 import GameDetails from '../../containers/GameDetails';

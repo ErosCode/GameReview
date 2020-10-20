@@ -7,10 +7,9 @@ import Axios from 'axios';
 
 import './styles.scss';
 
-const Header = ({gameId}) => {
+const Header = ({ games }) => {
   const { userData, setUserData } = useContext(UserContext);
   const [ searchValue, setSearchValue ] = useState('');
-  const [ searchFilter, setSearchFilter ] = useState([]);
 
   const logout = () => {
     setUserData({
@@ -22,22 +21,11 @@ const Header = ({gameId}) => {
   
   const handleSearchChange = (evt) => {
     setSearchValue(evt.target.value);
-    setTimeout(() => {
-
-    })
-    Axios.get(`http://localhost:3002/api/games/search/` + searchValue)
-    .then((response) => {
-      console.log(response.data)
-      setSearchFilter(response.data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
   };
 
-  const results = !searchValue
-    ? searchFilter
-    : searchFilter.filter(({name}) =>
+  const searchResults = !searchValue
+    ? games
+    : games.filter(({name}) =>
     getSlugFromTitle(name).includes(getSlugFromTitle(searchValue))
       );
 
@@ -65,14 +53,14 @@ const Header = ({gameId}) => {
         <div className="header__wrap--right">
             <div className="header__search__form">
               <input value={searchValue} onChange={handleSearchChange} name="search" type="search" placeholder="Search" />
-                  {results.map((item) => (
+                  {searchValue.length>0 && (searchResults.map((item) => (
                       <Link
                         to={`/games/${getSlugFromTitle(item.name)}`}
                         key={item.name}
                       >
                       {item.name}
                       </Link>
-                  ))}
+                  )))}
             </div>
           {userData.user ? (
             <>
@@ -141,14 +129,14 @@ const Header = ({gameId}) => {
         <div className="nav--smallScreen__right">
         <div className="header__search__form">
               <input value={searchValue} onChange={handleSearchChange} name="search" type="search" placeholder="Search" />
-                  {results.map((item) => (
+              {searchValue.length>0 && (searchResults.map((item) => (
                       <Link
                         to={`/games/${getSlugFromTitle(item.name)}`}
                         key={item.name}
                       >
                       {item.name}
                       </Link>
-                  ))}
+                  )))}
             </div>
           {userData.user ? (
             <>
