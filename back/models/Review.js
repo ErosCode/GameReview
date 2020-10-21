@@ -40,6 +40,12 @@ const reviewSchema = new Schema({
         max: 999,
         min: 0
     },
+    review_rate: {
+        type: Number,
+        require: true,
+        max: 10,
+        min: 0
+    },
     game: {
         type: Schema.Types.ObjectId,
         ref: "Game"

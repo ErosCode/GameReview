@@ -52,7 +52,8 @@ const ReviewForm = ({ gameId }) => {
                 review_graphics: values.graphicsRate,
                 review_story: values.storyRate,
                 review_animation: values.writingRate,
-                review_writing: values.animationRate
+                review_writing: values.animationRate,
+                review_rate: (values.graphicsRate+values.storyRate+values.writingRate+values.animationRate) /4,
               })
                 .then((response) => {
                   resetForm();
