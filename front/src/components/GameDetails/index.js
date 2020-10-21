@@ -25,8 +25,8 @@ const GameDetails = ({ game, getReviews, reviews }) =>  {
     <div className="game__details">
       <div className="game__infos">
         <div className="game__infos--img">
-          <Card style={{ width: '18rem' }}>
-            <Card.Img src={game.imgURL} style={{ width: '17.9rem', height: '20rem' }} />
+          <Card style={{ width: '18rem', height: '22rem' }}>
+            <Card.Img src={game.imgURL} style={{ width: '17.9rem', height: '22rem' }} />
           </Card>
         </div>
         <div className="game__infos--details">
