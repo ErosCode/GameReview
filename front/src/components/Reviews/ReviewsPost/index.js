@@ -5,12 +5,12 @@ import './styles.scss';
 import { Avatar } from '@material-ui/core';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 
-const ReviewsPost = ({ getReviews, gameId, reviews}) => {
+const ReviewsPost = ({ getReviews, gameId, reviews }) => {
   useEffect(() => {
     
   console.log('gameIdReview', gameId);
     getReviews(gameId);
-  }, []);
+  }, [gameId]);
 const truncateString = (str, num) => {
   if (str.length <= num) {
     return str

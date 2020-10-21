@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import PropTypes from 'prop-types';
 import UserContext from '../../UserContext';
 import { NavLink, Link } from 'react-router-dom';
 import { getSlugFromTitle } from '../../selectors';
@@ -173,6 +174,13 @@ const Header = ({ games }) => {
     </div>
     
   );
+};
+Header.propTypes ={
+  games: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+    }),
+  ).isRequired,
 };
 
 export default Header;
