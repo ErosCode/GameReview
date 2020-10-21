@@ -8,6 +8,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
       game,
       games: state.games.games,
+      reviews: state.games.reviews,
     };
   };
 

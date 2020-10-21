@@ -5,18 +5,20 @@ import './styles.scss';
 import { Avatar } from '@material-ui/core';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 
-const ReviewsPost = ({ getReviews, gameId, reviews }) => {
+const ReviewsPost = ({ getReviews, gameId, reviews, gameRating }) => {
   useEffect(() => {
-    
-  console.log('gameIdReview', gameId);
     getReviews(gameId);
   }, [gameId]);
+
 const truncateString = (str, num) => {
   if (str.length <= num) {
     return str
   }
   return str.slice(0, 10)
 };
+const scores = reviews.map((review)=>review.review_rate);
+const average = scores.reduce((totalRates, score) => totalRates + score, 0);
+const averageTotal = average / reviews.length;
 
   return (
     <div className="reviews__post">
@@ -37,7 +39,9 @@ const truncateString = (str, num) => {
           </div>
         <div className="post__top__right">
           <div className="post__option">
-          <p>Rating : {(review.review_graphics + review.review_writing + review.review_story + review.review_animation) / 4}</p>
+          <p>Rating : {review.review_rate}</p>
+          {console.log("REVIEWSRATEEEE", reviews.map((review)=>review.review_rate)), console.log("average", average / reviews.length)}
+          {average / reviews.length}
           </div>
           <div className="post__option">
             <ThumbUpIcon />
@@ -49,7 +53,6 @@ const truncateString = (str, num) => {
         <div className="post__rates">
           <div className="post__rate">
             <span>Graphics</span>
-            
               {review.review_graphics}/10
           </div>
           <div className="post__rate">

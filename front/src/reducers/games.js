@@ -2,7 +2,7 @@ import {
     SAVE_GAMES,
   } from '../actions/games';
 import {
-  SAVE_REVIEWS
+  SAVE_REVIEWS,
 } from '../actions/reviews';
 
   const initialState = {

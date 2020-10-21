@@ -39,3 +39,84 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
+  .reviews__post {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    height: 600px;
+    overflow: hidden scroll;
+}
+.post {
+    margin: 1em;
+    border-radius: 15px;
+    box-shadow: 0px 5px 7px -7px rgba(0, 0, 0, 0.75);
+    background-color: white;
+}
+.post__top {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    justify-content: space-between;
+}
+.post__top__left {
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+}
+.post__top__left__info {
+    display: flex;
+}
+.post__top__left>p {
+    display: flex;
+}
+.post__top__left__info > h3 {
+    padding-left: 10px;
+}
+.post__bottom {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 15px 25px;
+    border-top: 1px solid lightgrey;
+}
+.post__text {
+    text-align: justify;
+    padding-right: 10px;
+    word-wrap: break-word;
+}
+.post__top__right {
+    padding: 10px;
+    display: flex;
+    font-size: medium;
+    cursor: pointer;
+    padding: 15px;
+}
+.post__option {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 5px;
+}
+.post__option>p {
+    margin-left: 10px;
+}
+.post__option:hover {
+    background-color: #eff2f5;
+    border-radius: 10px;
+}
+.post__rates {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid lightgrey;
+}
+.post__rate {
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    width: 7em;
+    padding: 5px;
+    border-radius: 7px;
+    color: white;
+    font-style: italic;
+    font-weight: 600;
+}
