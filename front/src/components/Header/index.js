@@ -49,18 +49,20 @@ const Header = ({ games }) => {
             Games
           </NavLink>
         </div>
-        <div className="header__wrap--right">
-            <div className="header__search__form">
-              <input value={searchValue} onChange={handleSearchChange} name="search" type="search" placeholder="Search" />
-                  {searchValue.length>0 && (searchResults.map((item) => (
-                      <Link
-                        to={`/games/${getSlugFromTitle(item.name)}`}
-                        key={item.name}
-                      >
-                      {item.name}
-                      </Link>
-                  )))}
-            </div>
+        <div className="header__search__form">
+          <input value={searchValue} onChange={handleSearchChange} name="search" type="search" placeholder="Search" />
+            <ul> {searchValue.length>0 && (searchResults.map((item) => (
+              
+              <Link
+                className="search__list"
+                to={`/games/${getSlugFromTitle(item.name)}`}
+                key={item.name}
+              >
+                {item.name}
+              </Link>
+            )))}</ul>
+          </div>
+          <div className="header__wrap--right">
           {userData.user ? (
             <>
             <NavLink
@@ -123,20 +125,21 @@ const Header = ({ games }) => {
               &copy; All rights reserved ErosCode
               </li>
           </ul>
-          
         </div>
-        <div className="nav--smallScreen__right">
         <div className="header__search__form">
-              <input value={searchValue} onChange={handleSearchChange} name="search" type="search" placeholder="Search" />
-              {searchValue.length>0 && (searchResults.map((item) => (
-                      <Link
-                        to={`/games/${getSlugFromTitle(item.name)}`}
-                        key={item.name}
-                      >
-                      {item.name}
-                      </Link>
-                  )))}
+              <input className="header__search__input" value={searchValue} onChange={handleSearchChange} name="search" type="search" placeholder="Search" />
+              <ul> {searchValue.length>0 && (searchResults.map((item) => (
+              
+              <Link
+                className="search__list"
+                to={`/games/${getSlugFromTitle(item.name)}`}
+                key={item.name}
+              >
+                {item.name}
+              </Link>
+            )))}</ul>
             </div>
+            <div className="nav--smallScreen__right">
           {userData.user ? (
             <>
             <NavLink

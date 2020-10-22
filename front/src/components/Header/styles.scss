@@ -1,25 +1,21 @@
 .header {
-    padding-top: 0.5em;
+    padding-top: 0.6em;
     margin-bottom: 2em;
 }
 .nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 @media (max-width: 599px) {
     .nav {
       display: none;
     }
 }
-.header__wrap--left {
-    display: flex;
-}
-.header__wrap--right {
-    display: flex;
-}
 .menu__item {
     padding-left: 20px;
     padding-right: 20px;
+    
+    padding-bottom: 0.4em;
 }
 .header__logout--button {
     background: linear-gradient(to top, #da6555, #da55bb);
@@ -50,10 +46,10 @@
     color: black;
 }
 .header__search__form{
-    margin-right: 1em;
     &>input {
+      margin-top: -5px;
         outline: none;
-        height: 1em;
+        height: 0.9em;
     }
     &>input[type=search] {
         -webkit-appearance: textfield;
@@ -95,7 +91,31 @@
         color: #999;
     }
 }
-
+.header__search__form > ul {
+  display: flex;
+  position: absolute;
+  z-index: 5;
+  flex-direction: column;
+  background-color: rgba(223, 217, 217, 0.918);
+  border-radius: 3px;
+  padding: 0;
+  padding-right: 1em;
+  padding-left: 1em;
+  -webkit-box-shadow: 14px 15px 22px -8px rgba(0,0,0,0.75);
+  -moz-box-shadow: 14px 15px 22px -8px rgba(0,0,0,0.75);
+  box-shadow: 14px 15px 22px -8px rgba(0,0,0,0.75);
+  min-height: 0em;
+  max-height: 3em;
+  overflow-x: hidden scroll;
+}
+.search__list {
+  color: black;
+  font-weight: 600;
+}
+.nav--smallScreen {
+  display: flex;
+  justify-content: flex-end;
+}
 @media (min-width: 600px) {
     .nav--smallScreen {
       display: none;
@@ -103,7 +123,6 @@
 }
 @media (max-width: 447px) {
     .nav--smallScreen__right,
-    .header__search__form,
     .header__link
      {
       margin: 0;
@@ -121,18 +140,14 @@
   -webkit-user-select: none;
   user-select: none;
 }
-
 #menuToggle a {
   text-decoration: none;
   color: white;
   transition: color 0.3s ease;
 }
-
 #menuToggle a:hover {
   color: black;
 }
-
-
 #menuToggle input {
   display: block;
   width: 40px;
@@ -145,10 +160,6 @@
   z-index: 2; /* and place it over the hamburger */
   -webkit-touch-callout: none;
 }
-
-/*
- * Just a quick hamburger
- */
 #menuToggle span{
   display: block;
   width: 33px;
@@ -214,8 +225,4 @@
 }
 #menuToggle input:checked ~ ul{
   transform: none;
-}
-.nav--smallScreen__right {
-    display: flex;
-    justify-content: flex-end;
 }
