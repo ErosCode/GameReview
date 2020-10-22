@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import PropTypes from 'prop-types';
 import UserContext from '../../UserContext.js';
 import { Formik, Form, Field } from 'formik';
@@ -26,9 +26,9 @@ const GameDetails = ({ game, getReviews, reviews }) =>  {
     const scores = reviews.map((review)=>review.review_rate);
     const average = scores.reduce((totalRates, score) => totalRates + score, 0);
     const averageTotal = parseFloat((average / reviews.length).toFixed(2));
-    
-    const addNewReview = () => {
-      window.localStorage.getItem('newReview');
+    const reviewsEndRef = useRef(null);
+    const scrollToBottom = () => {
+      reviewsEndRef.current.scrollIntoView({ behavior: "smooth" })
     }
     const userData = React.useContext(UserContext);
   const ReviewSchema = Yup.object().shape({
@@ -129,7 +129,9 @@ const GameDetails = ({ game, getReviews, reviews }) =>  {
           {review.review_text}
           </div>
         </div>
+        <div ref={reviewsEndRef} />
       </div>
+      
     ))}
     </div>
     <div className="reviewForm">
@@ -161,7 +163,10 @@ const GameDetails = ({ game, getReviews, reviews }) =>  {
                   setSubmitting(false);
                   console.log(response)
                   getReviews(game._id);
-                  setIsloading(false)
+                  setIsloading(false);
+                  setTimeout(()=> (
+                    scrollToBottom()
+                  ), 2000);
                   })
                 .catch((error) => {
                   setSubmitting(false);
