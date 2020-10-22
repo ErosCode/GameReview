@@ -120,3 +120,37 @@
     font-style: italic;
     font-weight: 600;
 }
+.reviewForm {
+    background-color: lightgrey;
+    display: flex;
+    padding: 1em;
+}
+.reviewForm > form > label, textarea {
+    margin: 0 10px;
+    border-radius: 7px;
+}
+.reviewForm > form > div > div > input {
+    margin: 0 auto;
+    border-radius: 7px;
+    width: 50px;
+}
+.reviewForm > form {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+.reviewForm__text {
+    padding-top: 0;
+    padding-left: 0;
+}
+.reviewForm__rates {
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+.reviewForm__rate {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 10px;
+}

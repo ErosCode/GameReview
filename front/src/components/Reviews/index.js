@@ -3,10 +3,10 @@ import ReviewForm from './ReviewForm';
 
 import './styles.scss';
 
-const Reviews = ({ gameId, handleReviewForm }) => {
+const Reviews = ({ gameId, handleReviewForm, reviews }) => {
   return (
     <div className="reviews">
-      <ReviewForm handleReviewForm={handleReviewForm} gameId={gameId} />
+      <ReviewForm handleReviewForm={handleReviewForm} gameId={gameId} reviews={reviews}/>
     </div>
   );
 };

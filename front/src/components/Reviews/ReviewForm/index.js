@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Axios from 'axios';
 import UserContext from '../../../UserContext.js';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-
 import './styles.scss';
 
-const ReviewForm = ({ gameId }) => {
+const ReviewForm = ({ gameId, reviews }) => {
   const userData = React.useContext(UserContext);
   const ReviewSchema = Yup.object().shape({
     reviewPostText: Yup.string()
