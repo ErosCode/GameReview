@@ -71,7 +71,7 @@ const GameDetails = ({ game, getReviews, reviews }) =>  {
             Average reviewers rate:
           </p>
           <div className="game__infos--rate">
-          {averageTotal}/10
+          {averageTotal ? averageTotal : '5'}/10
           </div>
           <p className="game__infos--description">
             Description: {game.description}
