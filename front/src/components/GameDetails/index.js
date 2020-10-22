@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useRef} from 'react';
 import PropTypes from 'prop-types';
-import UserContext from '../../UserContext.js';
+import UserContext from '../../UserContext';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import Axios from 'axios';
@@ -10,13 +10,14 @@ import { Avatar } from '@material-ui/core';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 
 const GameDetails = ({ game, getReviews, reviews }) =>  {
-  const [ isLoading, setIsloading ] = useState(false)
   useEffect(() => {
       setIsloading(true);
       getReviews(game._id);
       setIsloading(false)
     }, [game._id]);
-    
+
+  const [ isLoading, setIsloading ] = useState(false);
+
     const truncateString = (str, num) => {
       if (str.length <= num) {
         return str
@@ -30,7 +31,7 @@ const GameDetails = ({ game, getReviews, reviews }) =>  {
     const scrollToBottom = () => {
       reviewsEndRef.current.scrollIntoView({ behavior: "smooth" })
     }
-    const userData = React.useContext(UserContext);
+  const userData = React.useContext(UserContext);
   const ReviewSchema = Yup.object().shape({
     reviewPostText: Yup.string()
       .min(20, 'Too Short! 20 characters minimum')
@@ -134,6 +135,7 @@ const GameDetails = ({ game, getReviews, reviews }) =>  {
       
     ))}
     </div>
+    {userData.userData.user ? (
     <div className="reviewForm">
       <Formik
             validationSchema={ReviewSchema}
@@ -218,6 +220,9 @@ const GameDetails = ({ game, getReviews, reviews }) =>  {
         )}
         </Formik>
     </div>
+    ): ( 
+      <div className="formNotAllowed"> You have to be logged</div>
+    )}
     </div>
   );
 };
