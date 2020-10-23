@@ -1,9 +1,19 @@
 .games {
     display: flex;
+    flex-direction: column;
+}
+.games__list {
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 .game__card {
     color: black;
     margin: 10px 15px;
+}
+
+.pagination {
+    margin-top: 6em;
+    display: flex;
+    justify-content: center;
 }
