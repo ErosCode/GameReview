@@ -73,7 +73,13 @@ const Header = ({ games }) => {
             >
               Profile
             </NavLink>
-            <button className="header__logout--button" onClick={logout}>Log out</button>
+            <NavLink 
+              to="/"
+              className="menu__item header__link" 
+              onClick={logout}
+            >
+              Logout
+            </NavLink>
             </>
           ): (
             <>

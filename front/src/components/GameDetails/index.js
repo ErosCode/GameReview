@@ -102,9 +102,6 @@ const GameDetails = ({ game, getReviews, reviews, addLike }) =>  {
           </div>
         <div className="post__top__right">
           <div className="post__option">
-          <p>Rating : {review.review_rate}</p>
-          </div>
-          <div className="post__option">
             <ThumbUpIcon onClick={() => addLikeFunc(review._id, review.review_likes)} />
             <p>Like : {review.review_likes}</p>
           </div>
