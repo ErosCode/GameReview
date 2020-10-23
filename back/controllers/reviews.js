@@ -40,11 +40,17 @@ module.exports = {
     },
 
     replaceReview: async (req, res, next) => {
+        try {
         const { reviewId } = req.params;
         const newReview = req.body;
 
-        const result = await Review.findByIdAndUpdate(reviewId, newReview, {new:true});
+        await Review.findByIdAndUpdate(reviewId, newReview, {new:true});
         res.status(200).json({ success: true })
+        next();
+        } catch(err) {
+            res.status(400).json(err)
+            next();
+        }
     },
 
     updateReview: async (req, res, next) => {

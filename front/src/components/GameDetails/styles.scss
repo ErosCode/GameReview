@@ -102,6 +102,9 @@
     background-color: #eff2f5;
     border-radius: 10px;
 }
+.post__option--like:hover {
+    background-color: blue;
+}
 .post__rates {
     display: flex;
     justify-content: space-around;

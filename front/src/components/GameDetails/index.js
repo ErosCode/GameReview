@@ -9,7 +9,7 @@ import './styles.scss';
 import { Avatar } from '@material-ui/core';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 
-const GameDetails = ({ game, getReviews, reviews }) =>  {
+const GameDetails = ({ game, getReviews, reviews, addLike }) =>  {
   useEffect(() => {
       setIsloading(true);
       getReviews(game._id);
@@ -17,13 +17,19 @@ const GameDetails = ({ game, getReviews, reviews }) =>  {
     }, [game._id]);
 
   const [ isLoading, setIsloading ] = useState(false);
-
-    const truncateString = (str, num) => {
-      if (str.length <= num) {
-        return str
-      }
+  const addLikeFunc = (reviewId, reviewLikes) => {
+      addLike(reviewId, reviewLikes)
+      setIsloading(true);
+      getReviews(game._id);
+      setIsloading(false)
+     
+  };
+  const truncateString = (str, num) => {
+    if (str.length <= num) {
+      return str
+    }
       return str.slice(0, 10)
-    };
+  };
     const scores = reviews.map((review)=>review.review_rate);
     const average = scores.reduce((totalRates, score) => totalRates + score, 0);
     const averageTotal = parseFloat((average / reviews.length).toFixed(2));
@@ -99,8 +105,8 @@ const GameDetails = ({ game, getReviews, reviews }) =>  {
           <p>Rating : {review.review_rate}</p>
           </div>
           <div className="post__option">
-            <ThumbUpIcon />
-            <p>Like : 5555</p>
+            <ThumbUpIcon onClick={() => addLikeFunc(review._id, review.review_likes)} />
+            <p>Like : {review.review_likes}</p>
           </div>
         </div>
         </div>
@@ -237,6 +243,7 @@ GameDetails.propTypes = {
   }),
   getReviews: PropTypes.func,
   reviews: PropTypes.array,
+  addLike: PropTypes.func.isRequired,
 };
 
 GameDetails.defaultProps = {

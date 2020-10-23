@@ -36,7 +36,7 @@ const reviewSchema = new Schema({
     },
     review_likes: {
         type: Number,
-        require: true,
+        default: 0,
         max: 999,
         min: 0
     },
