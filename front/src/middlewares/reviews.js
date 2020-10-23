@@ -30,6 +30,8 @@ const games = (store) => (next) => (action) => {
         .catch((error) => {
           console.log(error.response);
         })
+      next(action);
+      break;
     }
     default:
       next(action);

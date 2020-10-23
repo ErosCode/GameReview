@@ -24,6 +24,12 @@ const gameSchema = new Schema({
         max: 20,
         min: 0
     },
+    tags: [{
+        type: String,
+        required: true,
+        min: 2,
+        max: 300,
+    }],
     reviews: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Review"

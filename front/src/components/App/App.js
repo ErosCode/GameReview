@@ -9,6 +9,7 @@ import Home from '../Home';
 import Games from '../../containers/Games';
 import GameDetails from '../../containers/GameDetails';
 import Footer from '../Footer';
+import AdminGames from '../../components/AdminGames';
 import './App.scss';
 import Axios from 'axios';
 
@@ -81,6 +82,12 @@ const App = ({ getGames }) => {
             <GameDetails slug={ match.params.slug } />
           )} 
         />
+        <Route
+          path="/adminside/admin/admingames"
+          exact
+        >
+          <AdminGames />
+        </Route>
         
       </div>
       <Footer />

@@ -24,7 +24,7 @@ const Games = ({ games }) => {
     <div className="games">
       <div className="games__list">
       {currentGames.map(({ name, _id, imgURL }) => (
-      <Card key={_id} className="game__card" style={{ width: '18rem', height: '22rem' }}>
+      <Card key={_id} className="game__card" style={{ width: '18rem'}}>
         <Link
           to={`/games/${getSlugFromTitle(name)}`}
         >
