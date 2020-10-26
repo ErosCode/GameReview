@@ -1,0 +1,13 @@
+.home__carousel {
+    background-color: dimgrey;
+    border-radius: 7px;
+}
+.home__carousel__item {
+    width: 300px;
+    height: 250px;
+}
+.home__carousel__caption > h3{
+    font-weight: bold;
+    color: rgb(236, 5, 140);
+    text-shadow: 2px 2px #000000;
+}

@@ -6,7 +6,7 @@ const mapStateToProps = (state) => ({
     lastReviews: state.home.lastReviews,
 });
 
-const mapDispatchToProps = (dispatch) = ({
+const mapDispatchToProps = (dispatch) => ({
     getLastGames: () => dispatch(getLastGames()),
     getLastReviews: () => dispatch(getLastReviews()),
 });

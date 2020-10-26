@@ -15,24 +15,21 @@ const Home = ({ getLastGames, lastGames }) => {
 
   return (
     <div className="home">
-      <Carousel activeIndex={index} onSelect={handleSelect}>
-        {lastGames.map((game) => {
-        <Carousel.Item key={game.name}>
+      <Carousel className="home__carousel" activeIndex={index} onSelect={handleSelect}>
+        {lastGames.map(({ name, _id, imgURL }) => (
+        <Carousel.Item key={_id}>
           <img
-            className="d-block w-100"
-            src="holder.js/800x400?text=First slide&bg=373940"
-            alt={game.name}
+            className="home__carousel__item"
+            src={imgURL}
+            alt={name}
           />
-          <Carousel.Caption>
-            <h3>{game.name}</h3>
-          </Carousel.Caption>
         </Carousel.Item>
-      })}
+        ))}
     </Carousel>
 
     </div>
   );
-}
+};
 
 Home.propTypes = {
   getLastGames: PropTypes.func.isRequired,
