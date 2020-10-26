@@ -28,7 +28,7 @@ const Games = ({ games }) => {
         <Link
           to={`/games/${getSlugFromTitle(name)}`}
         >
-          <Card.Img variant="top" src={imgURL} style={{ width: '17.9rem', height: '22rem' }} className="game__card__img"/>
+          <Card.Img variant="top" src={imgURL} style={{ width: '17.9rem', height: '20rem' }} className="game__card__img"/>
         </Link>
         <Card.Body>
           <Card.Title>{name}</Card.Title>
@@ -48,7 +48,7 @@ const Games = ({ games }) => {
           <ul className='pagination'>
             {pageNumbers.map(number => (
               <li key={number} className='page-item'>
-                <a onClick={() => paginate(number)} href='!#' className='page-link'>
+                <a onClick={() => paginate(number)} className='page-link'>
                   {number}
                 </a>
               </li>
