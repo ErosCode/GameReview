@@ -1,9 +1,12 @@
 .home__carousel {
     background-color: dimgrey;
     border-radius: 7px;
+    z-index: 0;
+    width: 90vw;
+    margin: auto;
 }
 .home__carousel__item {
-    width: 300px;
+    max-width: 100%;
     height: 250px;
 }
 .home__carousel__caption > h3{

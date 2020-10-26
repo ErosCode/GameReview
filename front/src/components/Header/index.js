@@ -75,7 +75,7 @@ const Header = ({ games }) => {
             </NavLink>
             <NavLink 
               to="/"
-              className="menu__item header__link" 
+              className="menu__item header__link menu__item--logout" 
               onClick={logout}
             >
               Logout
@@ -156,7 +156,13 @@ const Header = ({ games }) => {
             >
               Profile
             </NavLink>
-            <button className="header__logout--button" onClick={logout}>Log out</button>
+            <NavLink 
+              to="/"
+              className="menu__item header__link menu__item--logout" 
+              onClick={logout}
+            >
+              Logout
+            </NavLink>
             </>
           ): (
             <>
