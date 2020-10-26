@@ -82,5 +82,17 @@ module.exports = {
           });
     },
 
+    getLastReviews: async (req, res, next) => {
+        try{
+            const lastReviews = await Review.find().sort({date: -1}).limit(2)
+            res.status(200).json(lastReviews);
+            next();
+        } catch(err) {
+            console.log(err.response);
+            res.status(400).json(err.response);
+            next();
+        }
+    },
+
 
 }

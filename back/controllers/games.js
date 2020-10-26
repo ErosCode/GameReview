@@ -97,5 +97,17 @@ module.exports= {
             };
     },
 
+    getLastGames: async (req, res, next) => {
+        try{
+            const lastGames = await Game.find().sort({date: -1})
+            res.status(200).json(lastGames);
+            next();
+        } catch(err) {
+            console.log(err.response);
+            res.status(400).json(err.response);
+            next();
+        }
+    },
+
 
 }

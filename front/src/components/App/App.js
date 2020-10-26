@@ -5,7 +5,7 @@ import UserContext from '../../UserContext.js';
 import Login from '../Login';
 import Register from '../Register';
 import Header from '../../containers/Header';
-import Home from '../Home';
+import Home from '../../containers/Home';
 import Games from '../../containers/Games';
 import GameDetails from '../../containers/GameDetails';
 import Footer from '../Footer';

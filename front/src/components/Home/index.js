@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './styles.scss';
 import { Carousel } from 'react-bootstrap';
 
-const Home = ({getLastGames}) => {
+const Home = ({ getLastGames, lastGames }) => {
   useEffect(() => {
       getLastGames()
   }, []);
@@ -17,7 +17,7 @@ const Home = ({getLastGames}) => {
     <div className="home">
       <Carousel activeIndex={index} onSelect={handleSelect}>
         {lastGames.map((game) => {
-        <Carousel.Item>
+        <Carousel.Item key={game.name}>
           <img
             className="d-block w-100"
             src="holder.js/800x400?text=First slide&bg=373940"
@@ -36,5 +36,12 @@ const Home = ({getLastGames}) => {
 
 Home.propTypes = {
   getLastGames: PropTypes.func.isRequired,
+  lastGames: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      _id: PropTypes.string,
+      imgURL: PropTypes.string,
+    }),
+  ).isRequired,
 }
 export default Home;
