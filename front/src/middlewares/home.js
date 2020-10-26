@@ -21,9 +21,9 @@ const games = (store) => (next) => (action) => {
       break;
     }
     case GET_LAST_REVIEWS: {
-      Axios.get('http://localhost:3002/api/home/lastgames')
+      Axios.get('http://localhost:3002/api/home/lastreviews')
         .then((response) => {
-          console.log(response.data);
+          console.log('lastreview', response.data);
           store.dispatch(saveLastReviews(response.data));
         })
         .catch((error) => {

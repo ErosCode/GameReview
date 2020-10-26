@@ -2,15 +2,28 @@ import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import './styles.scss';
 import { Carousel } from 'react-bootstrap';
+import { Avatar } from '@material-ui/core';
 
-const Home = ({ getLastGames, lastGames }) => {
+const Home = ({ getLastGames,
+  lastGames,
+  getLastReviews,
+  lastReviews,
+}) => {
   useEffect(() => {
       getLastGames()
+      getLastReviews()
   }, []);
   const [index, setIndex] = useState(0);
 
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
+  };
+
+  const truncateString = (str, num) => {
+    if (str.length <= num) {
+      return str
+    }
+      return str.slice(0, 10)
   };
 
   return (
@@ -25,8 +38,30 @@ const Home = ({ getLastGames, lastGames }) => {
           />
         </Carousel.Item>
         ))}
-    </Carousel>
-
+      </Carousel>
+      <div>
+        {lastReviews.map((review) => (
+      <div key={review._id} className="post">
+      <div className="post__top">
+          <div className="post__top__left">
+              <div className="post__top__left__info">
+                  <Avatar src="" className="post__avatar" />
+                  {review.user.name}
+              </div>
+              <p>{truncateString(review.date)}</p>
+          </div>
+        <div className="post__top__right">
+         
+        </div>
+        </div>
+        <div className="post__bottom">
+          <div className="post__text">
+          {review.review_text}
+          </div>
+        </div>
+      </div>
+        ))}
+        </div>
     </div>
   );
 };
