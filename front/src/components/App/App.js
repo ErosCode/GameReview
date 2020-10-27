@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import UserContext from '../../UserContext.js';
-import Login from '../Login';
+import Login from '../../containers/Login';
 import Register from '../Register';
 import Header from '../../containers/Header';
 import Home from '../../containers/Home';
 import Games from '../../containers/Games';
 import GameDetails from '../../containers/GameDetails';
 import Footer from '../Footer';
-import AdminGames from '../../components/AdminGames';
+import AdminGames from '../../containers/AdminGames';
 import './App.scss';
 import Axios from 'axios';
 
-const App = ({ getGames }) => {
+const App = ({ getGames, getUserRole, userRole }) => {
   const [ userData, setUserData ] = useState({
     token: undefined,
     user: undefined,
@@ -36,16 +36,19 @@ const App = ({ getGames }) => {
         {
           headers: { 'x-auth-token': token },
         });
-        console.log(tokenRes.data);
+        console.log('token res',tokenRes.data);
         setUserData({
           token,
           user: userRes.data,
         });
+        getUserRole(userRes.data.role);
       }
     };
     checkLoggedIn();
+    
   }, []);
-
+  
+  
   return (
     <UserContext.Provider value={{ userData, setUserData }} >
     <div className="App">
@@ -85,13 +88,11 @@ const App = ({ getGames }) => {
         <Route
           path="/adminside/admin/admingames"
           exact
-        >
-          <AdminGames />
+          >
+            <AdminGames />
         </Route>
-        
       </div>
       <Footer />
-
     </div>
     </UserContext.Provider>
   );
@@ -99,6 +100,8 @@ const App = ({ getGames }) => {
 
 App.propTypes = {
   getGames: PropTypes.func.isRequired,
+  getUserRole: PropTypes.func.isRequired,
+  userRole:PropTypes.string.isRequired,
 };
 
 export default App;

@@ -6,7 +6,7 @@ import { getSlugFromTitle } from '../../selectors';
 
 import './styles.scss';
 
-const Header = ({ games }) => {
+const Header = ({ games, userRole, getUserRole }) => {
   const { userData, setUserData } = useContext(UserContext);
   const [ searchValue, setSearchValue ] = useState('');
 
@@ -15,6 +15,7 @@ const Header = ({ games }) => {
       token: undefined,
       user: undefined,
     });
+    getUserRole(null);
     localStorage.setItem("auth-token", "");
   };
   
@@ -48,6 +49,15 @@ const Header = ({ games }) => {
           >
             Games
           </NavLink>
+          {userRole === "admin" && (
+          <NavLink
+            to="/adminside/admin/admingames"
+            className="menu__item header__link"
+            activeClassName="menu__link--active"
+            exact
+          >
+            Admin
+          </NavLink>)}
         </div>
         <div className="header__search__form">
           <input value={searchValue} onChange={handleSearchChange} name="search" type="search" placeholder="Search" />
@@ -196,6 +206,7 @@ Header.propTypes ={
       name: PropTypes.string,
     }),
   ).isRequired,
+  getUserRole: PropTypes.func.isRequired,
 };
 
 export default Header;

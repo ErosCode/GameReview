@@ -22,6 +22,12 @@ const userSchema = new Schema({
         max: 1024,
         min: 6
     },
+    role: {
+        type: String,
+        max: 7,
+        min: 5,
+        default: "visitor",
+    },
     reviews: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Review"

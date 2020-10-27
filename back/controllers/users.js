@@ -13,12 +13,14 @@ module.exports = {
     },
     
     getUser: async (req, res, next) => {
-        const {error} = validateParam(req.params);
-        if(error) {
-            return res.status(400).send(error.details[0].message);
+        try {
+            const user = await User.findById(req.params.userId);
+            res.status(200).json(user);
+            next();
+        } catch(err) {
+            res.status(400).json('failed to fetch user');
+            next();
         }
-        const user = await User.findById(req.user);
-        res.status(200).json(user);
     },
 
     replaceUser: async (req, res, next) => {
@@ -32,11 +34,16 @@ module.exports = {
 
     updateUser: async (req, res, next) => {
         // req.body must contains any fields
-        const { userId } = req.params;
+        try {
+            const { userId } = req.params;
         const newUser = req.body;
         
         const result = await User.findByIdAndUpdate(userId, newUser, {new:true});
         res.status(200).json({ success: true })
+        } catch(err) {
+            res.status(400).json(err)
+        }
+        
     },
 
     deleteUser: async (req, res, next) => {

@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import PropTypes from 'prop-types';
 import { useHistory } from "react-router-dom";
 import UserContext from "../../UserContext";
 import { Formik, Form, Field } from 'formik';
@@ -7,7 +8,7 @@ import * as Yup from 'yup';
 import './styles.scss';
 import Axios from 'axios';
 
-const Login = () => {
+const Login = ({getUserRole}) => {
   const [loginErrorMessage, setLoginErrorMessage] = useState(false);
   const [loginSuccessMessage, setLoginSuccesMessage] = useState(false);
 
@@ -54,13 +55,16 @@ const Login = () => {
                     user: response.data.user,
                   });
                   localStorage.setItem("auth-token", response.data.token);
-                  history.push("/");
                   
-                  console.log(response.data);
+                  let userObject = Object.values(response.data.user);
+                  let userRole = userObject[3];
+                  console.log(userRole);
+                  getUserRole(userRole);
+                  history.push("/");
                 })
                 .catch((error) => {
                   setSubmitting(false);
-                  setLoginSuccesMessage(error.response.data);
+                  setLoginSuccesMessage(error.response);
                   setLoginSuccesMessage(false);
                   console.log(error.response);
                 })
@@ -96,5 +100,7 @@ const Login = () => {
     </div>
   );
 };
-
+Login.propTypes = {
+  getUserRole: PropTypes.func.isRequired,
+}
 export default Login;

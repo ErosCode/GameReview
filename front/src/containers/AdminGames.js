@@ -1,14 +1,13 @@
 import { connect } from 'react-redux';
-import Header from '../components/Header';
 import { getUserRole } from '../actions/app';
+import AdminGames from '../components/AdminGames';
 
 const mapStateToProps = (state) => ({
-    games: state.games.games,
     userRole: state.app.userRole,
 });
 
 const mapDispatchToProps = (dispatch) => ({
     getUserRole: (userRole) => dispatch(getUserRole(userRole)),
-})
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(AdminGames);
