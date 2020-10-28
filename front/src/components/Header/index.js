@@ -51,7 +51,7 @@ const Header = ({ games, userRole, getUserRole }) => {
           </NavLink>
           {userRole === "admin" && (
           <NavLink
-            to="/adminside/admin/admingames"
+            to="/adminside/admin"
             className="menu__item header__link"
             activeClassName="menu__link--active"
             exact

@@ -66,3 +66,19 @@
 		width: calc(100vw - 32px);
 	}
 }
+
+.accordion__header {
+	display: flex;
+	justify-content: space-between;
+}
+.accordion__button--delete {
+	width: 34px;
+	height: 34px;
+	background-color: red;
+	color: black;
+	border-radius: 7px;
+	border: 1px solid black;
+}
+.card-header {
+	padding: 0;
+}

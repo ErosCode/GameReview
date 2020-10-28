@@ -9,7 +9,9 @@ import Home from '../../containers/Home';
 import Games from '../../containers/Games';
 import GameDetails from '../../containers/GameDetails';
 import Footer from '../Footer';
+import Admin from '../../containers/Admin';
 import AdminGames from '../../containers/AdminGames';
+import AdminUsers from '../../containers/AdminUsers';
 import './App.scss';
 import Axios from 'axios';
 
@@ -86,11 +88,26 @@ const App = ({ getGames, getUserRole, userRole }) => {
           )} 
         />
         <Route
-          path="/adminside/admin/admingames"
+          path="/adminside/admin"
           exact
           >
+            <Admin />
+        </Route>
+        <Route
+          path="/adminside/admin/admingames"
+          exact
+          > 
+            <Admin />
             <AdminGames />
         </Route>
+        <Route
+          path="/adminside/admin/adminusers"
+          exact
+          > 
+            <Admin />
+            <AdminUsers />
+        </Route>
+        
       </div>
       <Footer />
     </div>
