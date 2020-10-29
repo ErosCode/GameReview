@@ -3,20 +3,25 @@ import PropTypes from 'prop-types';
 
 import './styles.scss';
 
-const AdminUsers = ({getUsers}) => {
-  useEffect(() => (
-    getUsers()
-  ), [])
+const AdminUsers = ({ users }) => {
   return(
     <div className="adminUsers">
-      {users.map((user) => (
-        user.name
+      {users.map(({name}) => (
+        <div>{name}</div>
       ))}
     </div>
   );
 };
 
 AdminUsers.propTypes = {
-  getUsers: PropTypes.func.isRequired,
+  users: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+    }),
+  ).isRequired,
+};
+
+AdminUsers.defaultProps = {
+  users: []
 }
 export default AdminUsers;

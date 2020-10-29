@@ -5,9 +5,10 @@ import { NavLink } from 'react-router-dom';
 
 import './styles.scss';
 
-const Admin = ({ userRole, getUserRole }) => {
+const Admin = ({ userRole, getUserRole, getUsers }) => {
     useEffect(() => {
-		getUserRole(userRole)
+        getUserRole(userRole)
+        getUsers();
     }, [userRole])
     
     return (
@@ -41,7 +42,8 @@ const Admin = ({ userRole, getUserRole }) => {
 };
 
 AdminGames.propTypes = {
-	getUserRole: PropTypes.func.isRequired,
+    getUserRole: PropTypes.func.isRequired,
+    getUsers: PropTypes.func.isRequired,
 };
 
 export default Admin;

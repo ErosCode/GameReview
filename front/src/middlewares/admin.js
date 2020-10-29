@@ -1,13 +1,13 @@
 import Axios from 'axios';
-import { DELETE_GAME } from '../actions/admin';
+import { GET_USERS, saveUsers } from '../actions/admin';
 
 const admin = (store) => (next) => (action) => {
   switch (action.type) {
-    case DELETE_GAME: {
-        const itemId = action.itemId;
-      Axios.delete('http://localhost:3002/api/users')
+    case GET_USERS: {
+      Axios.get('http://localhost:3002/api/users')
         .then((response) => {
           console.log(response.data);
+          store.dispatch(saveUsers(response.data));
         })
         .catch((error) => {
           console.log(error.response);

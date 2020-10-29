@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { getUsers } from '../actions/admin';
 import AdminUsers from '../components/AdminUsers';
 
 const mapStateToProps = (state) => ({
@@ -7,8 +6,6 @@ const mapStateToProps = (state) => ({
     users: state.admin.users,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-    getUsers: () => dispatch(getUsers()),
-});
+const mapDispatchToProps = (dispatch) => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminUsers);

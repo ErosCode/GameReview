@@ -4,6 +4,7 @@ import counter from './counter' ;
 import games from './games';
 import home from './home';
 import app from './app';
+import admin from './admin';
 
 export default combineReducers({
     // Call your reducers
@@ -11,4 +12,5 @@ export default combineReducers({
     games,
     home,
     app,
+    admin,
 });

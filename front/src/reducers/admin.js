@@ -6,7 +6,7 @@ import {
     users: [],
   };
   
-  const app = (state = initialState, action = {}) => {
+  const admin = (state = initialState, action = {}) => {
     switch (action.type) {
       case SAVE_USERS:
         return {
@@ -14,8 +14,8 @@ import {
           users: action.users,
         };
       default:
-        return state;
+        return admin;
     }
   };
   
-  export default app;
+  export default admin;
