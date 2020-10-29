@@ -82,3 +82,16 @@
 .card-header {
 	padding: 0;
 }
+
+.adminGames__form--edit {
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+}
+.accordion__header.card-header > button.btn.btn-primary:first-child {
+	box-shadow: none;
+}
+.adminGames--add {
+	display: flex;
+	justify-content: flex-end;
+}

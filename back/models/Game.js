@@ -21,8 +21,9 @@ const gameSchema = new Schema({
     note: {
         type: Number,
         require: true,
-        max: 20,
-        min: 0
+        max: 10,
+        min: 0,
+        default: 5
     },
     tags: [{
         type: String,
