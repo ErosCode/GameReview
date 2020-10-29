@@ -175,6 +175,7 @@ const GameDetails = ({ game, getReviews, reviews, addLike }) =>  {
                   })
                 .catch((error) => {
                   setSubmitting(false);
+                  getReviews(game._id);
                   console.log(error.response);
                 })
             }}

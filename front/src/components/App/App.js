@@ -121,4 +121,8 @@ App.propTypes = {
   userRole:PropTypes.string.isRequired,
 };
 
+App.defaultProps = {
+  userRole: 'visitor',
+}
+
 export default App;

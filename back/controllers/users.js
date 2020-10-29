@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const Review = require('../models/Review');
+const bcrypt = require('bcryptjs');
 const { validateParam } = require('../validation');
 
 module.exports = {
@@ -37,7 +38,10 @@ module.exports = {
         try {
             const { userId } = req.params;
         const newUser = req.body;
-        
+        if (req.body.password) {
+            const salt = await bcrypt.genSalt(10);
+            req.body.password = await bcrypt.hash(req.body.password, salt);
+        }
         const result = await User.findByIdAndUpdate(userId, newUser, {new:true});
         res.status(200).json({ success: true })
         } catch(err) {

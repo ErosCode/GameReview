@@ -35,7 +35,7 @@ module.exports = {
             res.status(200).json(review);
             next();
         } catch(err) {
-            next(err);
+            next();
         }
     },
 
