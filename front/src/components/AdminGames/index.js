@@ -145,7 +145,7 @@ const AdminGames = ({ games, userRole, deleteGame, getGames }) => {
 				</Modal.Footer>
 			</Modal>
 			{games.map(({ name, _id, description, imgURL }) =>(
-			<Accordion defaultActiveKey="0" key={name}>
+			<Accordion defaultActiveKey="1" key={name}>
 				<Card>
 				  <Card.Header className="accordion__header">
 					<Accordion.Toggle as={Button} eventKey="0">
