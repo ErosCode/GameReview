@@ -71,7 +71,7 @@ const AdminUsers = ({ users, getUsers, userDelete }) => {
               {({ 
                 errors, touched, isSubmitting, handleSubmit,
               }) => (
-                <Form className="adminGames__form--edit" onSubmit={handleSubmit}>
+                <Form className="admin__form--edit" onSubmit={handleSubmit}>
                   <div>
                     <label>
                       User name:
@@ -88,7 +88,7 @@ const AdminUsers = ({ users, getUsers, userDelete }) => {
                   </div>
                   <div>
                     <label>
-                      User role:
+                      User role ("visitor" OR "admin"):
                     </label>
                     <Field name="userRole" type="userRole" placeholder={role} className={touched.userRole && errors.userRole ? 'error field--input' : 'validate field--input'} />
                     {errors.userRole && touched.userRole ? <div className="error__message">{errors.userRole}</div> : null}

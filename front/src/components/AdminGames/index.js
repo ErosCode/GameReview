@@ -192,7 +192,7 @@ const AdminGames = ({ games, userRole, deleteGame, getGames }) => {
             {({ 
               errors, touched, isSubmitting, handleSubmit,
             }) => (
-              <Form className="adminGames__form--edit" onSubmit={handleSubmit}>
+              <Form className="admin__form--edit" onSubmit={handleSubmit}>
 				  <div>
                 <label>
                   Game name:

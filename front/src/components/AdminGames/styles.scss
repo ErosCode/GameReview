@@ -83,10 +83,13 @@
 	padding: 0;
 }
 
-.adminGames__form--edit {
+.admin__form--edit {
 	display: flex;
 	flex-direction: column;
 	text-align: left;
+}
+.admin__form--edit .field--input {
+	width: 100%;
 }
 .accordion__header.card-header > button.btn.btn-primary:first-child {
 	box-shadow: none;
