@@ -50,9 +50,9 @@ const AdminUsers = ({ users, getUsers, userDelete }) => {
                 setSubmitting(true);
                 Axios.patch(`http://localhost:3002/api/users/`+_id,
                 {
-                  name: values.gameName,
-                  email: values.gameDescription,
-                  role: values.gameImgURL,
+                  name: values.userName,
+                  email: values.userEmail,
+                  role: values.userRole,
                 })
                   .then((response) => {
                     setTimeout(() => {
@@ -72,13 +72,27 @@ const AdminUsers = ({ users, getUsers, userDelete }) => {
                 errors, touched, isSubmitting, handleSubmit,
               }) => (
                 <Form className="adminGames__form--edit" onSubmit={handleSubmit}>
-            <div>
-                  <label>
-                    User name:
-                  </label>
-                  <Field name="gameName" type="gameName" placeholder={name} className={touched.gameName && errors.gameName ? 'error field--input' : 'validate field--input'} />
-                  {errors.gameName && touched.gameName ? <div className="error__message">{errors.gameName}</div> : null}
-          </div>
+                  <div>
+                    <label>
+                      User name:
+                    </label>
+                    <Field name="userName" type="userName" placeholder={name} className={touched.userName && errors.userName ? 'error field--input' : 'validate field--input'} />
+                    {errors.userName && touched.userName ? <div className="error__message">{errors.userName}</div> : null}
+                  </div>
+                  <div>
+                    <label>
+                      User email:
+                    </label>
+                    <Field name="userEmail" type="email" placeholder={email} className={touched.userEmail && errors.userEmail ? 'error field--input' : 'validate field--input'} />
+                    {errors.userEmail && touched.userEmail ? <div className="error__message">{errors.userEmail}</div> : null}
+                  </div>
+                  <div>
+                    <label>
+                      User role:
+                    </label>
+                    <Field name="userRole" type="userRole" placeholder={role} className={touched.userRole && errors.userRole ? 'error field--input' : 'validate field--input'} />
+                    {errors.userRole && touched.userRole ? <div className="error__message">{errors.userRole}</div> : null}
+                  </div>
                   <button className="login__submit" type="submit" disabled={isSubmitting}>Submit</button>
                 </Form>
               )}
@@ -88,7 +102,6 @@ const AdminUsers = ({ users, getUsers, userDelete }) => {
           </Card>
           </Accordion>
         ))}
-      ))}
     </div>
   );
 };
