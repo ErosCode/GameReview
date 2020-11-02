@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { Accordion, Card, Button, Modal} from 'react-bootstrap';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import Axios from 'axios';
+import Axios from '../../axios';
 import './styles.scss';
 
 const AdminGames = ({ games, userRole, deleteGame, getGames }) => {
@@ -44,7 +44,7 @@ const AdminGames = ({ games, userRole, deleteGame, getGames }) => {
 	  });
 
 	const itemDelete = (itemId) => {
-		Axios.delete(`http://localhost:3002/api/games/` + itemId)
+		Axios.delete(`/games/` + itemId)
                 .then((response) => {
 					console.log(response);
 				  getGames();
@@ -84,7 +84,7 @@ const AdminGames = ({ games, userRole, deleteGame, getGames }) => {
 						onSubmit={(values, { setSubmitting, resetForm }) => {
 						// same shape as initial values
 						setSubmitting(true);
-						Axios.post('http://localhost:3002/api/games',
+						Axios.post('/games',
 						{
 							name: values.gameName,
 							description: values.gameDescription,
@@ -169,7 +169,7 @@ const AdminGames = ({ games, userRole, deleteGame, getGames }) => {
             onSubmit={(values, { setSubmitting, resetForm }) => {
             // same shape as initial values
               setSubmitting(true);
-              Axios.put(`http://localhost:3002/api/games/`+_id,
+              Axios.put(`/games/`+_id,
               {
                 name: values.gameName,
 				description: values.gameDescription,

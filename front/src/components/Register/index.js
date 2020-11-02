@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios from '../../axios';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import './styles.scss';
@@ -39,7 +39,7 @@ const Register = () => {
               // same shape as initial values
               setSubmitting(true);
 
-              axios.post('http://localhost:3002/api/register', {
+              axios.post('/register', {
                 name: values.username,
                 email: values.email,
                 password: values.password,

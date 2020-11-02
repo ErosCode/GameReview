@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Accordion, Card, Button, Modal} from 'react-bootstrap';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import Axios from 'axios';
+import Axios from '../../axios';
 import './styles.scss';
 
 const AdminUsers = ({ users, getUsers, userDelete }) => {
@@ -48,7 +48,7 @@ const AdminUsers = ({ users, getUsers, userDelete }) => {
               onSubmit={(values, { setSubmitting, resetForm }) => {
               // same shape as initial values
                 setSubmitting(true);
-                Axios.patch(`http://localhost:3002/api/users/`+_id,
+                Axios.patch(`/users/`+_id,
                 {
                   name: values.userName,
                   email: values.userEmail,

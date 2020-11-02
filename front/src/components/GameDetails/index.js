@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import UserContext from '../../UserContext';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import Axios from 'axios';
+import Axios from '../../axios';
 import { Card } from 'react-bootstrap';
 import './styles.scss';
 import { Avatar } from '@material-ui/core';
@@ -63,7 +63,9 @@ const GameDetails = ({ game, getReviews, reviews, addLike, userRole, deleteRevie
 
   const itemDelete = (itemId) => {
     deleteReview(itemId);
+    setIsloading(true);
     getReviews(game._id);
+    setIsloading(false)
   };
 
   return (
@@ -110,11 +112,11 @@ const GameDetails = ({ game, getReviews, reviews, addLike, userRole, deleteRevie
             <ThumbUpIcon onClick={() => addLikeFunc(review._id, review.review_likes)} />
             <p>Like : {review.review_likes}</p>
           </div>
+          {userRole === 'admin' && (
           <div className="post__option">
-            {userRole === 'admin' && (
             <DeleteForeverIcon style={{color: 'red'}} onClick={() => itemDelete(review._id)}/>
-            )}
-            </div>
+          </div>
+          )}
         </div>
         </div>
         <div className="post__bottom">
@@ -161,7 +163,7 @@ const GameDetails = ({ game, getReviews, reviews, addLike, userRole, deleteRevie
               animationRate: '',
             }}
             onSubmit={(values, { setSubmitting, resetForm }) => {
-              Axios.post('http://localhost:3002/api/reviews',
+              Axios.post('/reviews',
               {
                 user: userData.userData.user.id,
                 game: game._id,

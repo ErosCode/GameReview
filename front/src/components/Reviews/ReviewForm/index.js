@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Axios from 'axios';
+import Axios from '../../axios';
 import UserContext from '../../../UserContext.js';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
@@ -43,7 +43,7 @@ const ReviewForm = ({ gameId, reviews }) => {
               animationRate: '',
             }}
             onSubmit={(values, { setSubmitting, resetForm }) => {
-              Axios.post('http://localhost:3002/api/reviews',
+              Axios.post('/reviews',
               {
                 user: userData.userData.user.id,
                 game: gameId,

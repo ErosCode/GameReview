@@ -6,7 +6,7 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 
 import './styles.scss';
-import Axios from 'axios';
+import Axios from '../../axios';
 
 const Login = ({getUserRole}) => {
   const [loginErrorMessage, setLoginErrorMessage] = useState(false);
@@ -38,7 +38,7 @@ const Login = ({getUserRole}) => {
             onSubmit={(values, { setSubmitting, resetForm }) => {
             // same shape as initial values
               setSubmitting(true);
-              Axios.post('http://localhost:3002/api/login',
+              Axios.post('/login',
               {
                 email: values.email,
                 password: values.password,

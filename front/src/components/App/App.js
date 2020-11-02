@@ -13,7 +13,7 @@ import Admin from '../../containers/Admin';
 import AdminGames from '../../containers/AdminGames';
 import AdminUsers from '../../containers/AdminUsers';
 import './App.scss';
-import Axios from 'axios';
+import Axios from '../../axios';
 
 const App = ({ getGames, getUserRole, userRole }) => {
   const [ userData, setUserData ] = useState({
@@ -29,12 +29,12 @@ const App = ({ getGames, getUserRole, userRole }) => {
         localStorage.setItem('auth-token', '');
         token = '';
       }
-      const tokenRes = await Axios.post('http://localhost:3002/api/user/tokenIsValid', null,
+      const tokenRes = await Axios.post('/user/tokenIsValid', null,
       {
         headers: { 'x-auth-token': token }
       });
       if (tokenRes.data) {
-        const userRes = await Axios.get('http://localhost:3002/api/user/',
+        const userRes = await Axios.get('/user/',
         {
           headers: { 'x-auth-token': token },
         });

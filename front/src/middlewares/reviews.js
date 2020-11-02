@@ -1,11 +1,11 @@
-import Axios from 'axios';
+import Axios from '../axios';
 import { GET_REVIEWS, saveReviews, ADD_LIKE } from '../actions/reviews';
 
 const games = (store) => (next) => (action) => {
   switch (action.type) {
     case GET_REVIEWS: {
         const gameId = action.gameId;
-      Axios.get(`http://localhost:3002/api/games/${gameId}`)
+      Axios.get(`/games/${gameId}`)
         .then((response) => {
           store.dispatch(saveReviews(response.data.reviews));
         })
@@ -20,7 +20,7 @@ const games = (store) => (next) => (action) => {
       let reviewId = action.reviewId;
       let reviewLikes = action.reviewLikes;
       let newReviewLike = reviewLikes+=1;
-      Axios.put(`http://localhost:3002/api/reviews/` + reviewId,
+      Axios.put(`/reviews/` + reviewId,
       {
         review_likes: newReviewLike,
       })
