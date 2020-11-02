@@ -8,8 +8,9 @@ import { Card } from 'react-bootstrap';
 import './styles.scss';
 import { Avatar } from '@material-ui/core';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
-const GameDetails = ({ game, getReviews, reviews, addLike }) =>  {
+const GameDetails = ({ game, getReviews, reviews, addLike, userRole, deleteReview }) =>  {
   useEffect(() => {
       setIsloading(true);
       getReviews(game._id);
@@ -22,7 +23,6 @@ const GameDetails = ({ game, getReviews, reviews, addLike }) =>  {
       setIsloading(true);
       getReviews(game._id);
       setIsloading(false)
-     
   };
   const truncateString = (str, num) => {
     if (str.length <= num) {
@@ -60,6 +60,11 @@ const GameDetails = ({ game, getReviews, reviews, addLike }) =>  {
       .max(10)
       .required('Required'),
   });
+
+  const itemDelete = (itemId) => {
+    deleteReview(itemId);
+    getReviews(game._id);
+  };
 
   return (
     <div className="game__details">
@@ -105,6 +110,11 @@ const GameDetails = ({ game, getReviews, reviews, addLike }) =>  {
             <ThumbUpIcon onClick={() => addLikeFunc(review._id, review.review_likes)} />
             <p>Like : {review.review_likes}</p>
           </div>
+          <div className="post__option">
+            {userRole === 'admin' && (
+            <DeleteForeverIcon style={{color: 'red'}} onClick={() => itemDelete(review._id)}/>
+            )}
+            </div>
         </div>
         </div>
         <div className="post__bottom">
@@ -242,6 +252,7 @@ GameDetails.propTypes = {
   getReviews: PropTypes.func,
   reviews: PropTypes.array,
   addLike: PropTypes.func.isRequired,
+  deleteReview: PropTypes.func.isRequired,
 };
 
 GameDetails.defaultProps = {
