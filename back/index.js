@@ -37,4 +37,4 @@ app.use('/api/reviews', reviewsRoute);
 app.use('/api/home', homeRoute);
 
 
-app.listen(3002, () => console.log('Server Up and Running'));
+app.listen(process.env.PORT || 3002, () => console.log('Server Up and Running'));
