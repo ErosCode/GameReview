@@ -85,7 +85,7 @@ module.exports = {
     getLastReviews: async (req, res, next) => {
         try{
             const lastReviews = await Review.find().populate({
-                path : 'user'}).sort({date: -1}).limit(2)
+                path : 'user'}).sort({date: -1}).limit(5)
             res.status(200).json(lastReviews);
             next();
         } catch(err) {

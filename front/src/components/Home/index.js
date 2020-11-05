@@ -46,7 +46,7 @@ const Home = ({ getLastGames,
           <div className="post__top__left">
               <div className="post__top__left__info">
                   <Avatar src="" className="post__avatar" />
-                  {review.user.name}
+                  <p className="username__review">{review.user.name}</p>
               </div>
               <p>{truncateString(review.date)}</p>
           </div>
