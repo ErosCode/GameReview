@@ -67,6 +67,7 @@ const Header = ({ games, userRole, getUserRole }) => {
                 className="search__list"
                 to={`/games/${getSlugFromTitle(item.name)}`}
                 key={item.name}
+                onClick={() => setSearchValue('')}
               >
                 {item.name}
               </Link>
