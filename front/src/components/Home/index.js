@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import './styles.scss';
 import { Carousel } from 'react-bootstrap';
 import { Avatar } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import { getSlugFromTitle } from '../../selectors';
 
 const Home = ({ getLastGames,
   lastGames,
@@ -31,11 +33,15 @@ const Home = ({ getLastGames,
       <Carousel className="home__carousel" activeIndex={index} onSelect={handleSelect}>
         {lastGames.map(({ name, _id, imgURL }) => (
         <Carousel.Item key={_id}>
+          <Link
+          to={`/games/${getSlugFromTitle(name)}`}
+        >
           <img
             className="home__carousel__item"
             src={imgURL}
             alt={name}
           />
+          </Link>
         </Carousel.Item>
         ))}
       </Carousel>

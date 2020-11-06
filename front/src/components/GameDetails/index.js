@@ -103,7 +103,7 @@ const GameDetails = ({ game, getReviews, reviews, addLike, userRole, deleteRevie
           <div className="post__top__left">
               <div className="post__top__left__info">
                   <Avatar src="" className="post__avatar" />
-                  <h3>{review.user.name}</h3>
+                  <p className="username__review">{review.user.name}</p>
               </div>
               <p>{truncateString(review.date)}</p>
           </div>

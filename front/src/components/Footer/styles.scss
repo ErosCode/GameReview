@@ -10,3 +10,8 @@
     margin-top: 2em;
     color: white;
 }
+@media (max-width: 599px) {
+    .footer {
+        display: none;
+    }
+}

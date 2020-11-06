@@ -20,7 +20,7 @@ module.exports= {
     getGame: async (req, res, next) => {
         try {
             const game = await Game.findById(req.params.gameId).populate({
-            path : 'reviews',
+            path : 'reviews', options: { sort: {'likes': -1}},
             populate : {
               path : 'user'
             }});
