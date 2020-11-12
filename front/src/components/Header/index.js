@@ -77,7 +77,7 @@ const Header = ({ games, userRole, getUserRole }) => {
           {userData.user ? (
             <>
             <NavLink
-              to="/profile"
+              to={`/profile/${userData.user.username}`}
               className="menu__item header__link"
               activeClassName="menu__link--active"
               exact
@@ -160,7 +160,7 @@ const Header = ({ games, userRole, getUserRole }) => {
           {userData.user ? (
             <>
             <NavLink
-              to="/profile"
+              to={`/profile/${userData.user.username}`}
               className="menu__item header__link"
               activeClassName="menu__link--active"
               exact

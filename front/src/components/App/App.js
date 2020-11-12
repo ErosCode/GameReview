@@ -6,6 +6,7 @@ import Login from '../../containers/Login';
 import Register from '../Register';
 import Header from '../../containers/Header';
 import Home from '../../containers/Home';
+import Profile from '../../components/Profile';
 import Games from '../../containers/Games';
 import GameDetails from '../../containers/GameDetails';
 import Footer from '../Footer';
@@ -85,6 +86,13 @@ const App = ({ getGames, getUserRole, userRole }) => {
           exact
           component={({ match }) => (
             <GameDetails slug={ match.params.slug } />
+          )} 
+        />
+        <Route
+          path="/profile/:slug"
+          exact
+          component={({ match }) => (
+            <Profile slug={ match.params.slug } />
           )} 
         />
         <Route
