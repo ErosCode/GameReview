@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Accordion, Card, Button, Modal} from 'react-bootstrap';
+import { Accordion, Card, Button } from 'react-bootstrap';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import Axios from '../../axios';

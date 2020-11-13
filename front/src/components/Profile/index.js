@@ -4,6 +4,7 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import Axios from '../../axios';
 import './styles.scss';
+import { Accordion, Card, Button } from 'react-bootstrap';
 
 const Profile = ({ userItem, getUserItem }) => {
   useEffect(() => {
@@ -53,9 +54,8 @@ const Profile = ({ userItem, getUserItem }) => {
 
 return (
     <div className="profile">
-        <div>{userItem.id}</div>
-        <div className="profile__password">
-            <div>
+      <div>Here you can change your personal infos</div>
+        <div className="profile__edit">
             <Formik
             validateOnChange
             initialValues={{
@@ -119,11 +119,22 @@ return (
                 </label>
                 <Field name="email" type="email" className={touched.email && errors.email ? 'error field--input' : 'validate field--input'} />
                 {errors.email && touched.email ? <div className="error__message">{errors.email}</div> : null}
-                <button className="register__submit" type="submit" disabled={isSubmitting}>Submit</button>
+                <button className="register__submit profile__edit__submit" type="submit" disabled={isSubmitting}>Submit</button>
               </Form>
             )}
           </Formik>
-            </div>
+          <Accordion defaultActiveKey="1">
+          <Card>
+            <Card.Header className="accordion__header profile__accordion__header">
+            <Accordion.Toggle as={Button} eventKey="0">
+                <div>
+                  Want to change your Password?
+                </div>
+                <div>Click on the banner!</div>
+            </Accordion.Toggle>
+            </Card.Header>
+            <Accordion.Collapse eventKey="0">
+        <Card.Body>
             <Formik
             validateOnChange
             initialValues={{
@@ -154,9 +165,6 @@ return (
               errors, touched, isSubmitting, handleSubmit,
             }) => (
               <Form className="register__form" onSubmit={handleSubmit}>
-                <label>
-                  Want to change your Password?
-                </label>
                 <Field name="password" type="password" className={touched.password && errors.password ? 'error field--input' : 'validate field--input'} />
                 {errors.password && touched.password ? (
                   <div className="error__message">{errors.password}</div>
@@ -168,10 +176,14 @@ return (
                 {errors.confirmPassword && touched.confirmPassword ? (
                   <div className="error__message">{errors.confirmPassword}</div>
                 ) : null}
-                <button className="register__submit" type="submit" disabled={isSubmitting}>Submit</button>
+                <button className="register__submit profile__edit__submit" type="submit" disabled={isSubmitting}>Submit</button>
               </Form>
             )}
           </Formik>
+          </Card.Body>
+            </Accordion.Collapse>
+          </Card>
+          </Accordion>
         </div>
     </div>
 );
