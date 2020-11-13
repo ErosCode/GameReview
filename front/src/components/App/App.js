@@ -6,7 +6,7 @@ import Login from '../../containers/Login';
 import Register from '../Register';
 import Header from '../../containers/Header';
 import Home from '../../containers/Home';
-import Profile from '../../components/Profile';
+import Profile from '../../containers/Profile';
 import Games from '../../containers/Games';
 import GameDetails from '../../containers/GameDetails';
 import Footer from '../Footer';
@@ -16,7 +16,7 @@ import AdminUsers from '../../containers/AdminUsers';
 import './App.scss';
 import Axios from '../../axios';
 
-const App = ({ getGames, getUserRole, userRole }) => {
+const App = ({ getGames, getUserRole, userRole, getUserItem }) => {
   const [ userData, setUserData ] = useState({
     token: undefined,
     user: undefined,
@@ -45,6 +45,7 @@ const App = ({ getGames, getUserRole, userRole }) => {
           user: userRes.data,
         });
         getUserRole(userRes.data.role);
+        getUserItem(userRes.data);
       }
     };
     checkLoggedIn();
@@ -92,7 +93,8 @@ const App = ({ getGames, getUserRole, userRole }) => {
           path="/profile/:slug"
           exact
           component={({ match }) => (
-            <Profile slug={ match.params.slug } />
+            <Profile
+              slug={ match.params.slug } />
           )} 
         />
         <Route
@@ -127,6 +129,7 @@ App.propTypes = {
   getGames: PropTypes.func.isRequired,
   getUserRole: PropTypes.func.isRequired,
   userRole:PropTypes.string.isRequired,
+  getUserItem: PropTypes.func.isRequired,
 };
 
 App.defaultProps = {

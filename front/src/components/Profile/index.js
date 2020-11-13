@@ -1,44 +1,36 @@
 import React,{ useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import UserContext from '../../UserContext';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import Axios from '../../axios';
-
 import './styles.scss';
 
-const Profile = () => {
-    const [ userData, setUserData ] = useState({
-        token: undefined,
-        user: undefined,
-    });
-    useEffect(() => {
-        const checkLoggedIn = async () => {
-          let token = localStorage.getItem('auth-token');
-          if (token === null) {
-            localStorage.setItem('auth-token', '');
-            token = '';
-          }
-          const tokenRes = await Axios.post('/user/tokenIsValid', null,
-          {
-            headers: { 'x-auth-token': token }
-          });
-          if (tokenRes.data) {
-            const userRes = await Axios.get('/user/',
-            {
-              headers: { 'x-auth-token': token },
-            });
-            console.log('token res',tokenRes.data);
-            setUserData([{
-              token,
-              user: userRes.data,
-            }]);
-            console.log('userData', userData)
-          }
-        };
-        checkLoggedIn();
-      }, []);
+const Profile = ({ userItem, getUserItem }) => {
+  useEffect(() => {
+    const checkLoggedIn = async () => {
+      let token = localStorage.getItem('auth-token');
+      if (token === null) {
+        localStorage.setItem('auth-token', '');
+        token = '';
+      }
+      const tokenRes = await Axios.post('/user/tokenIsValid', null,
+      {
+        headers: { 'x-auth-token': token }
+      });
+      if (tokenRes.data) {
+        const userRes = await Axios.get('/user/',
+        {
+          headers: { 'x-auth-token': token },
+        });
+        console.log('token res',tokenRes.data);
+        getUserItem(userRes.data);
+      }
+    };
+    checkLoggedIn();
+    
+  }, []);
 
+  const [ isLoading, setIsloading ] = useState(false);
 
     const ChangePasswordSchema = Yup.object().shape({
         username: Yup.string()
@@ -56,21 +48,20 @@ const Profile = () => {
 
 return (
     <div className="profile">
-        <div>{userData.user}</div>
+        <div>{userItem.id}</div>
         <div className="profile__password">
             <div>Want to change your password?</div>
             <div>
             <Formik
             validateOnChange
             initialValues={{
-              username: '',
-              email: '',
+              username: userItem.username,
+              email: userItem.email,
               password: '',
               confirmPassword: '',
             }}
             validationSchema={ChangePasswordSchema}
             onSubmit={(values, { setSubmitting, resetForm }) => {
-              // same shape as initial values
               setSubmitting(true);
 
               Axios.post('/gsgnseugns', {
@@ -105,7 +96,7 @@ return (
                 <label>
                   Want to change your Email?
                 </label>
-                <Field name="email" type="email" placeholder="hoopla@gmail.com" className={touched.email && errors.email ? 'error field--input' : 'validate field--input'} />
+                <Field name="email" type="email" className={touched.email && errors.email ? 'error field--input' : 'validate field--input'} />
                 {errors.email && touched.email ? <div className="error__message">{errors.email}</div> : null}
                 <label>
                   Want to change your Password?
@@ -130,5 +121,12 @@ return (
     </div>
 );
 };
+
+Profile.propTypes = {
+  getUserItem: PropTypes.func.isRequired,
+}
+Profile.defaultProps = {
+  userItem: {},
+}
 
 export default Profile;
