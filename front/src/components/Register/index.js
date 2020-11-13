@@ -18,6 +18,9 @@ const Register = () => {
     password: Yup.string()
       .min(6, 'Too Short! 6 characters minimum')
       .max(50, 'Too Long! 50 characters maximum')
+      .matches(/[a-z]/, 'at least one lowercase char')
+      .matches(/[A-Z]/, 'at least one uppercase char')
+      .matches(/[a-zA-Z]+[^a-zA-Z\s]+/, 'at least 1 number or special char (@,!,#, etc).')
       .required('Required'),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref('password'), null], 'Passwords must match'),
