@@ -36,5 +36,9 @@ app.use('/api/users', usersRoute);
 app.use('/api/reviews', reviewsRoute);
 app.use('/api/home', homeRoute);
 
+app.get('/',(req,res) => {
+  return res.send('Hello World! This is me!');
+  });
+
 
 app.listen(process.env.PORT || 3002, () => console.log('Server Up and Running'));
