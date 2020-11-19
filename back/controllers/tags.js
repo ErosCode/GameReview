@@ -20,17 +20,9 @@ module.exports = {
             return res.status(400).send('This tag already exists');
         };
         try {
-            const game = await Game.findById(req.body.game);
-            const newTag = req.body;
-            delete newTag.game;
-
-            const tag = new Tag(newTag);
-            tag.game = game;
-
-            await tag.save();
-
-            game.tags.push(tag);
-            await game.save();
+            const newTag = new Tag(req.body);
+            console.log(newTag)
+            const tag = await newTag.save();
 
             res.status(200).json(tag);
             next();
@@ -64,15 +56,15 @@ module.exports = {
 
     deleteTag: async (req, res, next) => {
         const { tagId } = req.params;
-        await Tag.findById(tagId, async function (err, Tag) {
+        await Tag.findById(tagId, async function(err, Tag) {
             try {
                 await Tag.remove();
-                res.status(200).send("Tag: "+ tagId +" was deleted.");
+                res.status(200).send("Tag: "+ tagId +" was deleted");
                 next();
-            } catch (err) {
-                res.status(500).send("There was a problem deleting the tag.");
-                 next(err);
+            } catch(err) {
+                res.status(500).send("There was a problem deleting the game");
+                next();
             }
-          });
+        });
     },
 }

@@ -6,13 +6,9 @@ const tagSchema = new Schema({
     name: {
         type: String,
         require: true,
-        max: 255,
+        max: 1024,
         min: 2
     },
-    games: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Game"
-    }],
     date: {
         type: Date,
         default: Date.now
