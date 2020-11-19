@@ -10,6 +10,7 @@ const gameRoute = require('./routes/games');
 const postRoute = require('./routes/posts');
 const usersRoute = require('./routes/users');
 const reviewsRoute = require('./routes/reviews');
+const tagsRoute = require('./routes/tags');
 const homeRoute = require('./routes/home');
 
 
@@ -34,6 +35,7 @@ app.use('/api/games', gameRoute);
 app.use('/api/posts', postRoute);
 app.use('/api/users', usersRoute);
 app.use('/api/reviews', reviewsRoute);
+app.use('/api/tags', tagsRoute);
 app.use('/api/home', homeRoute);
 
 app.get('/',(req,res) => {
