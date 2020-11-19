@@ -19,7 +19,7 @@ const Admin = ({ userRole, getUserRole, getUsers }) => {
             <div>
                 Choose something to Edit
             </div>
-            <div>
+            <div className="admin__nav">
             <NavLink
             to="/adminside/admin/admingames"
             className="menu__item header__link"

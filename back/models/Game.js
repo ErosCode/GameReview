@@ -26,10 +26,8 @@ const gameSchema = new Schema({
         default: 5
     },
     tags: [{
-        type: String,
-        required: true,
-        min: 2,
-        max: 300,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Tag"
     }],
     reviews: [{
         type: mongoose.Schema.Types.ObjectId,

@@ -59,7 +59,7 @@ const AdminGames = ({ games, userRole, deleteGame, getGames }) => {
 	if (userRole === 'admin') {
     return (
 		<div className="adminGames">
-			<Button variant="primary" onClick={handleShow} className="adminGames--add">
+			<Button variant="primary shadow-none" onClick={handleShow} style={{border: 'none'}} className="header__link adminGames--add">
 				+ Add a game
 			</Button>
 
@@ -146,9 +146,9 @@ const AdminGames = ({ games, userRole, deleteGame, getGames }) => {
 			</Modal>
 			{games.map(({ name, _id, description, imgURL }) =>(
 			<Accordion defaultActiveKey="1" key={name}>
-				<Card>
+				<Card className="accordion__margin">
 				  <Card.Header className="accordion__header">
-					<Accordion.Toggle as={Button} eventKey="0">
+					<Accordion.Toggle as={Button} eventKey="0" className="header__link" style={{border: 'none'}}>
 							{name}
 					</Accordion.Toggle>
 						<button onClick={()=> itemDelete(_id)} className="accordion__button--delete"> 
@@ -209,25 +209,10 @@ const AdminGames = ({ games, userRole, deleteGame, getGames }) => {
                   <div className="error__message">{errors.gameDescription}</div>
                 ) : null}
 				</div>
-				<div>
-				 <label>
-				Game image cover url:
-                </label>
-				 <Field name="gameImgURL" type="gameImgURL"  placeholder={imgURL} className={touched.gameImgURL && errors.gameImgURL ? 'error field--input' : 'validate field--input'} />
-                {errors.gameImgURL && touched.gameImgURL ? (
-                  <div className="error__message">{errors.gameImgURL}</div>
-                ) : null}
-				</div>
-                <button className="login__submit" type="submit" disabled={isSubmitting}>Submit</button>
-              </Form>
-            )}
-          </Formik>
-			</Card.Body>
-				  </Accordion.Collapse>
-				</Card>
-				</Accordion>
-			))}
-			<div className="tags-input">
+				<label>
+					Categories available:
+				</label>
+				<div className="tags-input">
 				<ul id="tags">
 					{tags.map((tag, index) => (
 						<li key={index} className="tag">
@@ -246,6 +231,25 @@ const AdminGames = ({ games, userRole, deleteGame, getGames }) => {
 					placeholder="Press space to add tags"
 				/>
 			</div>
+				<div>
+				 <label>
+				Game image cover url:
+                </label>
+				 <Field name="gameImgURL" type="gameImgURL"  placeholder={imgURL} className={touched.gameImgURL && errors.gameImgURL ? 'error field--input' : 'validate field--input'} />
+                {errors.gameImgURL && touched.gameImgURL ? (
+                  <div className="error__message">{errors.gameImgURL}</div>
+                ) : null}
+				</div>
+                <button className="login__submit" type="submit" disabled={isSubmitting}>Submit</button>
+              </Form>
+            )}
+          </Formik>
+			</Card.Body>
+				  </Accordion.Collapse>
+				</Card>
+				</Accordion>
+			))}
+			
 			
 			
 		</div>

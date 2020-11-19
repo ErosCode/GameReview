@@ -25,9 +25,9 @@ const AdminUsers = ({ users, getUsers, userDelete }) => {
     <div className="adminUsers">
       {users.map(({name, role, email, _id}) => (
         <Accordion defaultActiveKey="1" key={name}>
-          <Card>
+          <Card className="accordion__margin">
             <Card.Header className="accordion__header">
-            <Accordion.Toggle as={Button} eventKey="0">
+            <Accordion.Toggle as={Button} eventKey="0" className="header__link" style={{border: 'none'}}>
                 {name}
             </Accordion.Toggle>
               <button onClick={()=> itemDelete(_id)} className="accordion__button--delete"> 
