@@ -16,7 +16,7 @@ import AdminUsers from '../../containers/AdminUsers';
 import './App.scss';
 import Axios from '../../axios';
 
-const App = ({ getGames, getUserRole, userRole, getUserItem }) => {
+const App = ({ getGames, getUserRole, userRole, getUserItem, getTags }) => {
   const [ userData, setUserData ] = useState({
     token: undefined,
     user: undefined,
@@ -24,6 +24,7 @@ const App = ({ getGames, getUserRole, userRole, getUserItem }) => {
 
   useEffect(() => {
     getGames();
+    getTags();
     const checkLoggedIn = async () => {
       let token = localStorage.getItem('auth-token');
       if (token === null) {
@@ -127,6 +128,7 @@ const App = ({ getGames, getUserRole, userRole, getUserItem }) => {
 
 App.propTypes = {
   getGames: PropTypes.func.isRequired,
+  getTags: PropTypes.func.isRequired,
   getUserRole: PropTypes.func.isRequired,
   userRole:PropTypes.string.isRequired,
   getUserItem: PropTypes.func.isRequired,

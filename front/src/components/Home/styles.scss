@@ -2,8 +2,7 @@
     background-color: dimgrey;
     border-radius: 7px;
     z-index: 0;
-    width: 80vw;
-    margin: auto;
+    margin-left: auto;
 }
 .home__carousel__item {
     max-width: 100%;
@@ -14,7 +13,16 @@
     color: rgb(236, 5, 140);
     text-shadow: 2px 2px #000000;
 }
-
+.home__container {
+    display: flex;
+}
+.home__reviews {
+    width: -webkit-fill-available;
+}
+.home__reviews__context {
+    margin: 2em;
+    font-weight: bold;
+}
 .username__review {
     margin-left: 1em;
     font-size: large;

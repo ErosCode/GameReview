@@ -1,5 +1,5 @@
 import Axios from '../axios';
-import { GET_GAMES, saveGames } from '../actions/games';
+import { GET_GAMES, saveGames, GET_TAGS, saveTags } from '../actions/games';
 
 const games = (store) => (next) => (action) => {
   switch (action.type) {
@@ -8,6 +8,19 @@ const games = (store) => (next) => (action) => {
         .then((response) => {
           console.log(response.data);
           store.dispatch(saveGames(response.data));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      next(action);
+      break;
+    }
+    case GET_TAGS: {
+      Axios.get('/tags/')
+        .then((response) => {
+          console.log(response.data);
+          store.dispatch(saveTags(response.data));
         })
         .catch((error) => {
           console.log(error);

@@ -1,5 +1,6 @@
 import {
     SAVE_GAMES,
+    SAVE_TAGS,
   } from '../actions/games';
 import {
   SAVE_REVIEWS,
@@ -9,6 +10,7 @@ import {
     games: [],
     reviews: [],
     gameId: '',
+    tags: [],
   };
   
   const games = (state = initialState, action = {}) => {
@@ -23,6 +25,11 @@ import {
         ...state,
         reviews: action.reviews,
         gameId: action.gameId,
+        };
+      case SAVE_TAGS:
+        return {
+          ...state,
+          tags: action.tags,
         };
       default:
         return state;

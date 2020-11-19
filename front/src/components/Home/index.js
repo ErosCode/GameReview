@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
+import Aside from '../../containers/Aside';
 import './styles.scss';
 import { Carousel } from 'react-bootstrap';
 import { Avatar } from '@material-ui/core';
@@ -45,7 +46,10 @@ const Home = ({ getLastGames,
         </Carousel.Item>
         ))}
       </Carousel>
-      <div>
+      <div className="home__container">
+      <Aside />
+      <div className="home__reviews">
+        <div className="home__reviews__context">Last reviews from you</div>
         {lastReviews.map((review) => (
       <div key={review._id} className="post">
       <div className="post__top">
@@ -57,7 +61,6 @@ const Home = ({ getLastGames,
               <p>{truncateString(review.date)}</p>
           </div>
         <div className="post__top__right">
-         
         </div>
         </div>
         <div className="post__bottom">
@@ -67,6 +70,7 @@ const Home = ({ getLastGames,
         </div>
       </div>
         ))}
+        </div>
         </div>
     </div>
   );
