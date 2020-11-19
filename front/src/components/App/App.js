@@ -8,6 +8,7 @@ import Header from '../../containers/Header';
 import Home from '../../containers/Home';
 import Profile from '../../containers/Profile';
 import Games from '../../containers/Games';
+import GamesFiltered from '../../containers/GamesFiltered';
 import GameDetails from '../../containers/GameDetails';
 import Footer from '../Footer';
 import Admin from '../../containers/Admin';
@@ -83,6 +84,13 @@ const App = ({ getGames, getUserRole, userRole, getUserItem, getTags }) => {
         >
           <Games />
         </Route>
+        <Route
+          path="/tags/:slug"
+          exact
+          component={({ match }) => (
+            <GamesFiltered params={match.params.slug} slug={ match.params.slug } />
+          )} 
+        />
         <Route
           path="/games/:slug"
           exact
