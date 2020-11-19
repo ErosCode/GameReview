@@ -7,20 +7,20 @@ import * as Yup from 'yup';
 import Axios from '../../axios';
 import './styles.scss';
 
-const AdminGames = ({ games, userRole, deleteGame, getGames }) => {
+const AdminGames = ({ games, userRole, deleteGame, getGames, gamesTag }) => {
 
     const propstags = ['Nodejs', 'MongoDB'];
     const selectedTags = tags => {
 		console.log(tags);
 	};
-    const [tags, setTags] = useState(propstags);
+    const [proptags, setTags] = useState(propstags);
 	const removeTags = indexToRemove => {
-		setTags([...tags.filter((_, index) => index !== indexToRemove)]);
+		setTags([...proptags.filter((_, index) => index !== indexToRemove)]);
 	};
 	const addTags = event => {
 		if (event.target.value !== "") {
-			setTags([...tags, event.target.value]);
-			selectedTags([...tags, event.target.value]);
+			setTags([...proptags, event.target.value]);
+			selectedTags([...proptags, event.target.value]);
 			event.target.value = "";
 		}
 	};
@@ -144,7 +144,7 @@ const AdminGames = ({ games, userRole, deleteGame, getGames }) => {
 				</Button>
 				</Modal.Footer>
 			</Modal>
-			{games.map(({ name, _id, description, imgURL }) =>(
+			{games.map(({ name, _id, description, imgURL, tags }) =>(
 			<Accordion defaultActiveKey="1" key={name}>
 				<Card className="accordion__margin">
 				  <Card.Header className="accordion__header">
@@ -164,6 +164,7 @@ const AdminGames = ({ games, userRole, deleteGame, getGames }) => {
 				gameName: name,
 				gameDescription: description,
 				gameImgURL: imgURL,
+				gameTags: tags,
             }}
             validationSchema={EditSchema}
             onSubmit={(values, { setSubmitting, resetForm }) => {
@@ -214,11 +215,11 @@ const AdminGames = ({ games, userRole, deleteGame, getGames }) => {
 				</label>
 				<div className="tags-input">
 				<ul id="tags">
-					{tags.map((tag, index) => (
-						<li key={index} className="tag">
-							<span className='tag-title'>{tag}</span>
+					{gamesTag.map((tag) => (
+						<li /*key={index}*/className="tag">
+							<span className='tag-title'>{tag.name}</span>
 							<span className='tag-close-icon'
-								onClick={() => removeTags(index)}
+								onClick={() => removeTags()}
 							>
 								x
 							</span>
@@ -230,10 +231,17 @@ const AdminGames = ({ games, userRole, deleteGame, getGames }) => {
 					onKeyUp={event => event.which === 32 ? addTags(event) : null}
 					placeholder="Press space to add tags"
 				/>
-			</div>
+				</div>
+				<div>
+				<label>
+					This game tags:
+                </label>
+				<Field name="gameTags" type="gameTags"  placeholder={tags} className={touched.gameTags && errors.gameTags ? 'error field--input' : 'validate field--input'} />
+                
+				</div>
 				<div>
 				 <label>
-				Game image cover url:
+					Game image cover url:
                 </label>
 				 <Field name="gameImgURL" type="gameImgURL"  placeholder={imgURL} className={touched.gameImgURL && errors.gameImgURL ? 'error field--input' : 'validate field--input'} />
                 {errors.gameImgURL && touched.gameImgURL ? (

@@ -99,7 +99,7 @@ module.exports= {
 
     getLastGames: async (req, res, next) => {
         try{
-            const lastGames = await Game.find().sort({date: -1})
+            const lastGames = await Game.find().sort({date: -1}).limit(5)
             res.status(200).json(lastGames);
             next();
         } catch(err) {

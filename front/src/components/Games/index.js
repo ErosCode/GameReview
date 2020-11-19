@@ -35,7 +35,7 @@ const Games = ({ games }) => {
           <Link
             to={`/games/${getSlugFromTitle(name)}`}
           >
-          <Button variant="primary">
+          <Button variant="primary" className="menu__item header__link aside__link">
             Show Reviews
           </Button>
           </Link>

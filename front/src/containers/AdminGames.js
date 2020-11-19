@@ -7,6 +7,7 @@ import AdminGames from '../components/AdminGames';
 const mapStateToProps = (state) => ({
     userRole: state.app.userRole,
     games: state.games.games,
+    gamesTag: state.games.tags,
 });
 
 const mapDispatchToProps = (dispatch) => ({
