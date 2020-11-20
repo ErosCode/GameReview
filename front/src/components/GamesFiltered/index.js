@@ -17,7 +17,7 @@ const GamesFiltered = ({games, params}) =>  {
     const paginate = pageNumber => setCurrentPage(pageNumber);
     const pageNumbers = [];
   
-    for (let i = 1; i <= Math.ceil(games.length / gamesPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(currentGames.length / gamesPerPage); i++) {
     pageNumbers.push(i);
     };
 

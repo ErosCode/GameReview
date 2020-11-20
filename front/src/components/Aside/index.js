@@ -10,6 +10,7 @@ const Aside = ({tags}) => {
             <div className="aside__context">Choose a filter Tag</div>
             {tags.map(({name}) => (
                 <NavLink
+                key={name}
                 to={`/tags/${name}`}
                 className="menu__item header__link aside__link"
                 activeClassName="menu__link--active"

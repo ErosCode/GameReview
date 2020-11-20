@@ -9,21 +9,6 @@ import './styles.scss';
 
 const AdminGames = ({ games, userRole, deleteGame, getGames, gamesTag }) => {
 
-    const propstags = ['Nodejs', 'MongoDB'];
-    const selectedTags = tags => {
-		console.log(tags);
-	};
-    const [proptags, setTags] = useState(propstags);
-	const removeTags = indexToRemove => {
-		setTags([...proptags.filter((_, index) => index !== indexToRemove)]);
-	};
-	const addTags = event => {
-		if (event.target.value !== "") {
-			setTags([...proptags, event.target.value]);
-			selectedTags([...proptags, event.target.value]);
-			event.target.value = "";
-		}
-	};
 	const [show, setShow] = useState(false);
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
@@ -169,12 +154,13 @@ const AdminGames = ({ games, userRole, deleteGame, getGames, gamesTag }) => {
             validationSchema={EditSchema}
             onSubmit={(values, { setSubmitting, resetForm }) => {
             // same shape as initial values
-              setSubmitting(true);
+			  setSubmitting(true);
               Axios.put(`/games/`+_id,
               {
                 name: values.gameName,
 				description: values.gameDescription,
 				imgURL: values.gameImgURL,
+				tags: values.gameTags,
               })
                 .then((response) => {
                   setTimeout(() => {
@@ -216,25 +202,15 @@ const AdminGames = ({ games, userRole, deleteGame, getGames, gamesTag }) => {
 				<div className="tags-input">
 				<ul id="tags">
 					{gamesTag.map((tag) => (
-						<li /*key={index}*/className="tag">
+						<li key={tag.name} className="tag">
 							<span className='tag-title'>{tag.name}</span>
-							<span className='tag-close-icon'
-								onClick={() => removeTags()}
-							>
-								x
-							</span>
 						</li>
 					))}
 				</ul>
-				<input
-					type="text"
-					onKeyUp={event => event.which === 32 ? addTags(event) : null}
-					placeholder="Press space to add tags"
-				/>
 				</div>
 				<div>
 				<label>
-					This game tags:
+					This game tags(Only one by game):
                 </label>
 				<Field name="gameTags" type="gameTags"  placeholder={tags} className={touched.gameTags && errors.gameTags ? 'error field--input' : 'validate field--input'} />
                 

@@ -107,8 +107,7 @@
   -webkit-box-shadow: 14px 15px 22px -8px rgba(0,0,0,0.75);
   -moz-box-shadow: 14px 15px 22px -8px rgba(0,0,0,0.75);
   box-shadow: 14px 15px 22px -8px rgba(0,0,0,0.75);
-  min-height: 0em;
-  max-height: 3em;
+  height: auto;
   overflow-x: hidden scroll;
 }
 .search__list {

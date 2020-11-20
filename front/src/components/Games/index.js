@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import Aside from '../../containers/Aside';
 import { Link } from 'react-router-dom';
 import { Card, Button } from 'react-bootstrap';
 
@@ -22,6 +23,8 @@ const Games = ({ games }) => {
 
   return (
     <div className="games">
+      <div className="home__container">
+      <Aside />
       <div className="games__list">
       {currentGames.map(({ name, _id, imgURL }) => (
       <Card key={_id} className="game__card" style={{ width: '18rem'}}>
@@ -42,6 +45,7 @@ const Games = ({ games }) => {
         </Card.Body>
       </Card>
       ))}
+      </div>
       </div>
       <div className="games__pagination">
         <nav>

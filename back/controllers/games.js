@@ -62,8 +62,19 @@ module.exports= {
     replaceGame: async (req, res, next) => {
         const { gameId } = req.params;
         const newGame = req.body;
-
         const result = await Game.findByIdAndUpdate(gameId, newGame, {new: true});
+        res.status(200).json({ success: true});
+    },
+
+    updateGame: async (req, res, next) => {
+        const { gameId } = req.params;
+        const newGame = req.body;
+        const newTag = req.body.tags;
+        if(req.body.tags)
+        {
+            Game.update({ _id: gameId }, { $push: { tags: newTag } })
+        }
+            const result = await Game.findByIdAndUpdate(gameId, newGame, {new: true});
         res.status(200).json({ success: true});
     },
 

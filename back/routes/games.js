@@ -14,6 +14,7 @@ router.route('/:gameId')
     .get(GameController.getGame)
     .post(ReviewController.newReview)
     .put(GameController.replaceGame)
+    .patch(GameController.updateGame)
     .delete(GameController.deleteGame);
 
 module.exports = router;
