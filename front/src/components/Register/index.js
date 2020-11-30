@@ -27,7 +27,8 @@ const Register = () => {
   });
 
   return (
-    <div className="register">Sign Up
+    <div className="register">
+      <span className="register__bold">Sign Up Here</span>
           <Formik
             validateOnChange
             initialValues={{

@@ -5,23 +5,40 @@
 .field--input {
     border-radius: 5px;
 }
+.register__bold {
+    font-weight: bold;
+}
 label {
     margin-top: 20px;
+}
+.register__form > label {
+    font-weight: bold;
 }
 .error__message {
     color: red;
 }
 .error {
-    border: 2px solid #FF6565;
+    border: 0px;
+    border-bottom: 2px solid #FF6565;
+    height: 3em;
 }
 .validate {
-    border: 2px solid green;
+    border: 0px;
+    border-bottom: 2px solid green;
+    height: 3em;
 }
 .register__submit {
     margin-top: 3em;
-    border: 1px solid black;
+    border: none;
     border-radius: 5px;
-    background-color: orangered;
+    height: 3em;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(to top, #da6555, #da55bb);
+}
+.register__submit:hover {
+    color: black;
+    background: linear-gradient(to top, #dab055, #da55bb);
 }
 .register__error__message {
     padding-top: 10px;
