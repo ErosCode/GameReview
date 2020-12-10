@@ -7,7 +7,7 @@ const userSchema = new Schema({
     name: {
         type: String,
         require: true,
-        max: 255,
+        max: 50,
         min: 6
     },
     email: {
@@ -19,7 +19,7 @@ const userSchema = new Schema({
     password: {
         type: String,
         require: true,
-        max: 1024,
+        max: 50,
         min: 6
     },
     role: {

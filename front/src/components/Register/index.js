@@ -41,7 +41,6 @@ const Register = () => {
             onSubmit={(values, { setSubmitting, resetForm }) => {
               // same shape as initial values
               setSubmitting(true);
-
               axios.post('/register', {
                 name: values.username,
                 email: values.email,
@@ -77,7 +76,11 @@ const Register = () => {
                 <label>
                   Username
                 </label>
-                <Field name="username" className={touched.username && errors.username ? 'error field--input' : 'validate field--input'} />
+                <Field
+                  name="username"
+                  className={touched.username && errors.username ? 
+                    'error field--input' : 'validate field--input'} 
+                />
                 {errors.username && touched.username ? (
                   <div className="error__message">{errors.username}</div>
                 ) : null}

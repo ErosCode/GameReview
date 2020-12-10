@@ -13,9 +13,6 @@ const reviewsRoute = require('./routes/reviews');
 const tagsRoute = require('./routes/tags');
 const homeRoute = require('./routes/home');
 
-
-
-
 dotenv.config();
 
 // Connect to DB
