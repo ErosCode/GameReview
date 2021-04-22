@@ -1,9 +1,56 @@
-.header__button {
-    background-color: orangered;
-    border: 1px solid black;
-    border-radius: 5px;
-    color: white;
+.login__form {
+    display: flex;
+    flex-direction: column;
 }
-.header__button:hover {
-    background-color: red;
+.field--input {
+    border-radius: 5px;
+}
+.login__bold {
+    font-weight: bold;
+}
+label {
+    margin-top: 20px;
+}
+.login__form > label {
+    font-weight: bold;
+}
+.error__message {
+    color: red;
+}
+.error {
+    border: 0px;
+    border-bottom: 2px solid #FF6565;
+    height: 3em;
+}
+.validate {
+    border: 0px;
+    border-bottom: 2px solid green;
+    height: 3em;
+}
+.login__submit {
+    margin-top: 3em;
+    border: none;
+    border-radius: 5px;
+    height: 3em;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(to top, #da6555, #da55bb);
+}
+.login__submit:hover {
+    color: black;
+    background: linear-gradient(to top, #dab055, #da55bb);
+}
+.login__error__message {
+    padding-top: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5em;
+    color: red;
+}
+.login__success__message {
+    padding-top: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5em;
+    color: green;
 }

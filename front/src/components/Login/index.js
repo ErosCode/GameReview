@@ -27,7 +27,7 @@ const Login = ({getUserRole}) => {
   return (
     <div className="login">
 
-      Sign In
+      <span className="login__bold">Sign In</span>
           <Formik
             validateOnChange
             initialValues={{
@@ -64,7 +64,7 @@ const Login = ({getUserRole}) => {
                 })
                 .catch((error) => {
                   setSubmitting(false);
-                  setLoginSuccesMessage(error.response);
+                  setLoginErrorMessage(error.response.data);
                   setLoginSuccesMessage(false);
                   console.log(error.response);
                 })
